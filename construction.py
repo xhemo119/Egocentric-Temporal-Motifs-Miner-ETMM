@@ -74,7 +74,8 @@ def individuals(data):
     int: number of individuals in the network
 
     """
-    return(np.unique(data[:,1:]))
+    return(np.unique(data[:,1:]))                       # [:,1:] bedeutet, er schaut alle Zeilen in dem big array an, und dann schaut er sich ab dem 1. Element in jedem einzelnen Array die Zahlen an, heißt aus [[28820 63 89][28860 51 54]...] wird [[63 89][51 54]...],
+                                                        # und unique() zähle alle vorkommenden Zahlen auf, aber nur einmal. Also wenn zum Beispiel 51 öfter vorkommt, dann wird es nur 1x aufgezählt
 
 
 def build_graphs(data,gap=19,with_labels=False,meta_path=None):
@@ -137,7 +138,7 @@ def split_input_data(data, gap=19):
     np.array(): return an array of array, the inner array represent the interactions within the gap.
 
     """
-    times = data[:,0]
+    times = data[:,0]                                       # [:,0] bedeutet, dass alle Zeilen angeschaut werden in dem Array, aber nur die 0.te Spalte, also in dem Fall diese großen Nummern
     pos = times[0]
     chunks = []
     for i in range(len(times)):
