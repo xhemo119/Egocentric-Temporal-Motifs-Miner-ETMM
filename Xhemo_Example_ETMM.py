@@ -9,17 +9,17 @@ from ETMM import *
 
 
 # Parameters
-k = 3    # number of static snapshot used for the constructions of ETN
-gap = 299   # temporal gap
+k = 2    # number of static snapshot used for the constructions of ETN
+gap = 300   # temporal gap
 label = False # if true, the loaded dataset is labeled
-file_name = "InVS13" # name of the file
+file_name = "LH10" # name of the file
 
 
 # Load the temporal graph as a sequence of static NetworkX graphs
 data = cs.load_data("Datasets/"+file_name+".dat")
-print(data)
-nodes = cs.individuals(data)
-print(nodes)
+#print(data)
+#nodes = cs.individuals(data)
+#print(nodes)
 if label:
     meta_data = cs.load_metadata("Datasets/metadata/metadata_"+file_name+".dat")
 else:
@@ -29,6 +29,8 @@ if label:
     graphs = cs.build_graphs(data,gap=gap,with_labels=label,meta_path="Datasets/metadata/metadata_"+file_name+".dat")
 else:
     graphs = cs.build_graphs(data,gap=gap,with_labels=label)
+    
+print(graphs)    
     
 
 # Count ETN or LETN and store the result
@@ -48,13 +50,13 @@ assert(SS == S)
 S_array = list(S.keys())
 #print(S_array[10])
 #print(from_ETNS_to_ETN(S_array[10],k=3,meta=None))
-draw_ETN(from_ETNS_to_ETN(S_array[10],k=3,meta=None),multiple=False)            # hier verstehe ich noch nicht so ganz, warum der Graph so gezeichnet wird und why S_array[10] benutzt wird, allgemein nochmal anschauen
+draw_ETN(from_ETNS_to_ETN(S_array[10],k=2,meta=None),multiple=False)            # hier verstehe ich noch nicht so ganz, warum der Graph so gezeichnet wird und why S_array[10] benutzt wird, allgemein nochmal anschauen
 
 
 # plot 6 most frequent ETN
-fig_per_row = 6
+fig_per_row = 5
 S_array = list(S.keys())
-for i in range(0,6,fig_per_row):
+for i in range(0,5,fig_per_row):
     plt.figure(figsize=(12,3))
     for j in range(fig_per_row):
         plt.subplot(1,fig_per_row,j+1)
@@ -113,12 +115,12 @@ print(counts)
 
 alpha=0.01
 beta=0.1
-gamma=10
+gamma=5
 
 ETM = get_ETM(counts,alpha,beta,gamma)
 
 
-fig_per_row = 6
+fig_per_row = 5
 for i in range(0,fig_per_row,fig_per_row):
     plt.figure(figsize=(12,3))
     for j in range(fig_per_row):
