@@ -17,9 +17,9 @@ file_name = "InVS13" # name of the file
 
 # Load the temporal graph as a sequence of static NetworkX graphs
 data = cs.load_data("Datasets/"+file_name+".dat")
-# print(data)
-# nodes = cs.individuals(data)
-# print(nodes)
+print(data)
+nodes = cs.individuals(data)
+print(nodes)
 if label:
     meta_data = cs.load_metadata("Datasets/metadata/metadata_"+file_name+".dat")
 else:
