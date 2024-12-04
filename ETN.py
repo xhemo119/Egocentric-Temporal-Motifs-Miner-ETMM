@@ -39,16 +39,19 @@ def load_etns(file_name,gap,k,label):
     return S
 
 def count_ETN(graphs,k,meta=None):
-    S = dict()
+    S = dict()                                      # Es wird hier benutzt, um das dictionary zu kreieren! Das erschafft dieses Format: {blablabla: 21, blabla: 14, bla: 1} (Also so wird dann tatsächlich unser Signatur beschriftet, wenn wir in die aufrufende Funktion gehen)
     for i in range(len(graphs)-k + 1):
         for v in graphs[i].nodes():
-            etn = build_ETN(graphs[i:i+k+1],v)
+            etn = build_ETN(graphs[i:i+k+1],v)      # hier wird ETN erstmal gebaut mit graphs, worin die static graphs drin sind (das sind einfach temporal graphic snapshots at time t) (aus vielen temporal graphic snapshots kann man ETN bauen)
+            #print(etn)
             if not etn == None:
                 etns = get_ETNS(etn,meta)
+                #print(etns)
                 if etns in S.keys():
-                    S[etns] = S[etns] + 1
+                    S[etns] = S[etns] + 1           # hier wird hochgezählt, wie oft ein ETNS vorkommt
                 else:
                     S[etns] = 1
+                #print(S[etns])
     return(S)
 
 

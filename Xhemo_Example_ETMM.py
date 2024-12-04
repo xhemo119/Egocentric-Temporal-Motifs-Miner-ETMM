@@ -28,20 +28,20 @@ else:
 if label:
     graphs = cs.build_graphs(data,gap=gap,with_labels=label,meta_path="Datasets/metadata/metadata_"+file_name+".dat")
 else:
-    graphs = cs.build_graphs(data,gap=gap,with_labels=label)
+    graphs = cs.build_graphs(data,gap=gap,with_labels=label)                                # in "graphs" werden die static graphs gespeichert (das sind einfach temporal graphic snapshots at time t) (aus vielen temporal graphic snapshots kann man dann ETN bauen)
     
-print(graphs)    
+#print(graphs)    
     
 
 # Count ETN or LETN and store the result
 S = count_ETN(graphs,k,meta=meta_data)
-S = {k: v for k, v in sorted(S.items(), key=lambda item: item[1], reverse=1)}
+S = {k: v for k, v in sorted(S.items(), key=lambda item: item[1], reverse=1)}               # das hier sportiert einfach die liste, sodass das etns was am meisten vorkommt ganz oben ist und das am wenigsten ganz unten
 
 store_etns(S,file_name,gap,k,label=label)
 
 print(S)                                                                                     # diesen abschnitt mit dem Signature S muss ich mir nochmal genauer anschauen
 
-
+'''
 # load etns 
 SS = load_etns(file_name,gap,k,label=label)
 assert(SS == S)
@@ -70,7 +70,16 @@ for i in range(0,5,fig_per_row):
 def buil_nm(graphs,n,file):
     t = 0
     to_save = []
+
+
     f = open("null_models/"+file+"/"+file+"_"+str(n)+".txt", "a")
+
+                                                                             
+
+    #directory = "null_models/"+file+"/"+file+"_"+str(n)+".txt"             # hab ich gemacht, hab mich an res orientiert, da hier immer noch das Problem besteht, dass kein Ordner automatisch erstellt wird
+    #if not os.path.exists(directory):
+    #    os.makedirs(directory)
+
     for g in graphs:
         for e in g.edges():
             s = str(t)+" "+str(e[0])+" "+str(e[1])+"\n"
@@ -128,3 +137,5 @@ for i in range(0,fig_per_row,fig_per_row):
         print("count \t = \t",ETM[i+j][1])
         draw_ETN(from_ETNS_to_ETN(ETM[i+j][0],k,meta_data),multiple=True)
     plt.show()
+
+'''
