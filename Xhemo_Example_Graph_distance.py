@@ -9,19 +9,19 @@ import distances as dis
 # %autoreload 2
 
 
-dataset1 = "InVS13" # name of the dtaset 1
-dataset2 = "LH10"   # name of the dataset 2
-gap = 299  # temporal gap
+dataset1 = "InVS13"
+dataset2 = "LH10"
+gap = 300                                       # temporal gap
 
-structure_type = "ETM" # ETM or ETN
-k = 3 # number of EN used for the creation of ETN
+structure_type = "ETM"                          # ETM or ETN
+k = 3                                           # number of EN used for the creation of ETN
 
 
 # statistical test parameters
 alpha=0.01
 beta=0.1
 gamma=5
-label=False # labels on nodes or not.
+label=False                                     # labels on nodes or not
 
 dist_etmm = dis.etmm_distance([dataset1,dataset2],structure_type,gap,k,label,alpha,beta,gamma)
 

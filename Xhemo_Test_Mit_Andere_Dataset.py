@@ -9,10 +9,10 @@ from ETMM import *
 
 
 # Parameters
-k = 2    # number of static snapshot used for the constructions of ETN
-gap = 300   # temporal gap
-label = False # if true, the loaded dataset is labeled
-file_name = "Xhemo_Test_Dataset (email-Eu-core-temporal)" # name of the file
+k = 2                                                               # number of static snapshot used for the constructions of ETN
+gap = 300                                                           # temporal gap
+label = False                                                       # if true, the loaded dataset is labeled
+file_name = "Xhemo_Test_Dataset (email-Eu-core-temporal)"
 
 '''
 def individuals(data):
@@ -108,10 +108,10 @@ def load_metadata(path_meta):
 
 def reorder_array(data):
 
-    reordered_data = np.zeros_like(data)  # Erstellt ein Array der gleichen Form wie data
-    reordered_data[:, 0] = data[:, -1]    # Verschiebt die letzte Spalte auf die erste
-    reordered_data[:, 1] = data[:, 0]     # Verschiebt die erste Spalte auf die zweite
-    reordered_data[:, 2] = data[:, 1]     # Verschiebt die zweite Spalte auf die dritte
+    reordered_data = np.zeros_like(data)                            # Erstellt ein Array der gleichen Form wie data
+    reordered_data[:, 0] = data[:, -1]                              # Verschiebt die letzte Spalte auf die erste
+    reordered_data[:, 1] = data[:, 0]                               # Verschiebt die erste Spalte auf die zweite
+    reordered_data[:, 2] = data[:, 1]                               # Verschiebt die zweite Spalte auf die dritte
     return reordered_data
 
 # Load the temporal graph as a sequence of static NetworkX graphs
@@ -142,7 +142,7 @@ S = {k: v for k, v in sorted(S.items(), key=lambda item: item[1], reverse=1)}
 
 store_etns(S,file_name,gap,k,label=label)
 
-print(S)                                                                                     # diesen abschnitt mit dem Signature S muss ich mir nochmal genauer anschauen
+print(S)                                                                                    # diesen abschnitt mit dem Signature S muss ich mir nochmal genauer anschauen
 
 
 # load etns 
@@ -153,7 +153,7 @@ assert(SS == S)
 S_array = list(S.keys())
 #print(S_array[10])
 #print(from_ETNS_to_ETN(S_array[10],k=3,meta=None))
-draw_ETN(from_ETNS_to_ETN(S_array[10],k=2,meta=None),multiple=False)            # hier verstehe ich noch nicht so ganz, warum der Graph so gezeichnet wird und why S_array[10] benutzt wird, allgemein nochmal anschauen
+draw_ETN(from_ETNS_to_ETN(S_array[10],k=2,meta=None),multiple=False)                        # hier verstehe ich noch nicht so ganz, warum der Graph so gezeichnet wird und why S_array[10] benutzt wird, allgemein nochmal anschauen
 
 
 # plot 6 most frequent ETN
@@ -168,7 +168,7 @@ for i in range(0,5,fig_per_row):
     plt.show()
 
 
-# BUILD NULL MODELS                                                             # verstehe die theorie hinter den null models noch nicht so richtig
+# BUILD NULL MODELS                                                                         # verstehe die theorie hinter den null models noch nicht so richtig
 def buil_nm(graphs,n,file):
     t = 0
     to_save = []
@@ -213,7 +213,7 @@ print(counts)
 
 
 
-# APPLY STATISTICAL TEST                                                        # den bre muss ich mir auch nochmal genauer anschauen
+# APPLY STATISTICAL TEST                                                                    # den bre muss ich mir auch nochmal genauer anschauen
 
 alpha=0.01
 beta=0.1

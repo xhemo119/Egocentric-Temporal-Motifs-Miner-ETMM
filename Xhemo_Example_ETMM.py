@@ -9,10 +9,10 @@ from ETMM import *
 
 
 # Parameters
-k = 2    # number of static snapshot used for the constructions of ETN
-gap = 300   # temporal gap
-label = False # if true, the loaded dataset is labeled
-file_name = "LH10" # name of the file
+k = 2                                   # number of static snapshot used for the constructions of ETN
+gap = 300                               # temporal gap
+label = False                           # if true, the loaded dataset is labeled
+file_name = "LH10"
 
 
 # Load the temporal graph as a sequence of static NetworkX graphs
@@ -39,18 +39,17 @@ S = {k: v for k, v in sorted(S.items(), key=lambda item: item[1], reverse=1)}   
 
 store_etns(S,file_name,gap,k,label=label)
 
-print(S)                                                                                     # diesen abschnitt mit dem Signature S muss ich mir nochmal genauer anschauen
+print(S)                                                                                    # diesen abschnitt mit dem Signature S muss ich mir nochmal genauer anschauen
 
-'''
 # load etns 
 SS = load_etns(file_name,gap,k,label=label)
 assert(SS == S)
 
-
+'''
 S_array = list(S.keys())
 #print(S_array[10])
 #print(from_ETNS_to_ETN(S_array[10],k=3,meta=None))
-draw_ETN(from_ETNS_to_ETN(S_array[10],k=2,meta=None),multiple=False)            # hier verstehe ich noch nicht so ganz, warum der Graph so gezeichnet wird und why S_array[10] benutzt wird, allgemein nochmal anschauen
+draw_ETN(from_ETNS_to_ETN(S_array[10],k=2,meta=None),multiple=False)                        # hier verstehe ich noch nicht so ganz, warum der Graph so gezeichnet wird und why S_array[10] benutzt wird, allgemein nochmal anschauen
 
 
 # plot 6 most frequent ETN
@@ -66,7 +65,7 @@ for i in range(0,5,fig_per_row):
 
 
 
-# BUILD NULL MODELS                                                             # verstehe die theorie hinter den null models noch nicht so richtig
+# BUILD NULL MODELS                                                                         # verstehe die theorie hinter den null models noch nicht so richtig
 def buil_nm(graphs,n,file):
     t = 0
     to_save = []
@@ -76,7 +75,7 @@ def buil_nm(graphs,n,file):
 
                                                                              
 
-    #directory = "null_models/"+file+"/"+file+"_"+str(n)+".txt"             # hab ich gemacht, hab mich an res orientiert, da hier immer noch das Problem besteht, dass kein Ordner automatisch erstellt wird
+    #directory = "null_models/"+file+"/"+file+"_"+str(n)+".txt"                             # hab ich gemacht, hab mich an res orientiert, da hier immer noch das Problem besteht, dass kein Ordner automatisch erstellt wird
     #if not os.path.exists(directory):
     #    os.makedirs(directory)
 
@@ -120,7 +119,7 @@ print(counts)
 
 
 
-# APPLY STATISTICAL TEST                                                        # den bre muss ich mir auch nochmal genauer anschauen
+# APPLY STATISTICAL TEST                                                                    # den bre muss ich mir auch nochmal genauer anschauen
 
 alpha=0.01
 beta=0.1
