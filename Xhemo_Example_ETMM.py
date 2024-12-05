@@ -12,7 +12,7 @@ from ETMM import *
 k = 2                                   # number of static snapshot used for the constructions of ETN
 gap = 300                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
-file_name = "LH10"
+file_name = "InVS13"
 
 
 # Load the temporal graph as a sequence of static NetworkX graphs
@@ -45,7 +45,7 @@ print(S)                                                                        
 SS = load_etns(file_name,gap,k,label=label)
 assert(SS == S)
 
-'''
+
 S_array = list(S.keys())
 #print(S_array[10])
 #print(from_ETNS_to_ETN(S_array[10],k=3,meta=None))
@@ -53,9 +53,9 @@ draw_ETN(from_ETNS_to_ETN(S_array[10],k=2,meta=None),multiple=False)            
 
 
 # plot 6 most frequent ETN
-fig_per_row = 5
+fig_per_row = 6
 S_array = list(S.keys())
-for i in range(0,5,fig_per_row):
+for i in range(0,6,fig_per_row):
     plt.figure(figsize=(12,3))
     for j in range(fig_per_row):
         plt.subplot(1,fig_per_row,j+1)
@@ -128,7 +128,7 @@ gamma=5
 ETM = get_ETM(counts,alpha,beta,gamma)
 
 
-fig_per_row = 5
+fig_per_row = 6
 for i in range(0,fig_per_row,fig_per_row):
     plt.figure(figsize=(12,3))
     for j in range(fig_per_row):
@@ -136,5 +136,3 @@ for i in range(0,fig_per_row,fig_per_row):
         print("count \t = \t",ETM[i+j][1])
         draw_ETN(from_ETNS_to_ETN(ETM[i+j][0],k,meta_data),multiple=True)
     plt.show()
-
-'''
