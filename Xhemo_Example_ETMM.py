@@ -12,7 +12,7 @@ from ETMM import *
 k = 2                                   # number of static snapshot used for the constructions of ETN
 gap = 300                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
-file_name = "InVS13"
+file_name = "LH10"
 
 
 # Load the temporal graph as a sequence of static NetworkX graphs
@@ -35,7 +35,7 @@ else:
 
 # Count ETN or LETN and store the result
 S = count_ETN(graphs,k,meta=meta_data)
-S = {k: v for k, v in sorted(S.items(), key=lambda item: item[1], reverse=1)}               # das hier sportiert einfach die liste, sodass das etns was am meisten vorkommt ganz oben ist und das am wenigsten ganz unten
+S = {k: v for k, v in sorted(S.items(), key=lambda item: item[1], reverse=1)}               # das hier sortiert einfach die liste, sodass das etns was am meisten vorkommt ganz oben ist und das am wenigsten ganz unten
 
 store_etns(S,file_name,gap,k,label=label)
 
@@ -49,13 +49,13 @@ assert(SS == S)
 S_array = list(S.keys())
 #print(S_array[10])
 #print(from_ETNS_to_ETN(S_array[10],k=3,meta=None))
-draw_ETN(from_ETNS_to_ETN(S_array[10],k=2,meta=None),multiple=False)                        # hier verstehe ich noch nicht so ganz, warum der Graph so gezeichnet wird und why S_array[10] benutzt wird, allgemein nochmal anschauen
+#draw_ETN(from_ETNS_to_ETN(S_array[10],k=2,meta=None),multiple=False)                        # hier verstehe ich noch nicht so ganz, warum der Graph so gezeichnet wird und why S_array[10] benutzt wird, allgemein nochmal anschauen
 
 
 # plot 6 most frequent ETN
-fig_per_row = 6
+fig_per_row = 5
 S_array = list(S.keys())
-for i in range(0,6,fig_per_row):
+for i in range(0,5,fig_per_row):
     plt.figure(figsize=(12,3))
     for j in range(fig_per_row):
         plt.subplot(1,fig_per_row,j+1)
@@ -128,7 +128,7 @@ gamma=5
 ETM = get_ETM(counts,alpha,beta,gamma)
 
 
-fig_per_row = 6
+fig_per_row = 5
 for i in range(0,fig_per_row,fig_per_row):
     plt.figure(figsize=(12,3))
     for j in range(fig_per_row):
