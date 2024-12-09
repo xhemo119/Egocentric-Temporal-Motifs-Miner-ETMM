@@ -310,3 +310,41 @@ def get_ids_and_k(ETN):
         if int(k_tmp) > k:
             k = int(k_tmp)
     return(ids,k)
+
+
+def draw_ETN_barchart(width, height):                                         #Komplett neue Funtion um die Ausgaben als Bar Charts darzustellen
+    
+    plt.bar(width,height)
+    
+    
+    # Das ab hier ist von draw_ETN(...)
+    '''
+    ids,k = get_ids_and_k(ETN)
+    pos = dict()
+    id_ego = []
+    for t in range(k+1):
+        for i in ids:
+            if "*" in i:
+                id_ego.append(str(i)+"_"+str(t))
+                pos[str(i)+"_"+str(t)] = [t,int(i[0])]
+            else:
+                pos[str(i)+"_"+str(t)] = [t,int(i)]
+                
+    node_label = dict() 
+    nodes_data = dict(ETN.nodes(data=True))
+    for i in list(ETN.nodes()):
+        if not(nodes_data[i] == {}):
+            node_label[i] = nodes_data[i]["label"]
+            
+            
+    if (node_label == {}):
+        nx.draw(ETN,pos=pos,node_size=100,alpha=0.9,with_labels=False)
+        nx.draw_networkx_nodes(ETN, pos, nodelist=id_ego, node_size=300, node_color='red',alpha=0.5)
+    else:
+        nx.draw(ETN,pos=pos,node_size=100,alpha=0.5)
+        nx.draw_networkx_nodes(ETN, pos, nodelist=id_ego, node_size=300, node_color='red',alpha=0.5)
+        nx.draw_networkx_labels(ETN, pos, labels=node_label, font_size=12)
+
+    if not multiple:
+        plt.show()
+    '''
