@@ -12,7 +12,7 @@ from ETMM import *
 k = 2                                   # number of static snapshot used for the constructions of ETN
 gap = 300                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
-file_name = "LH10"
+file_name = "InVS13"
 
 
 # Load the temporal graph as a sequence of static NetworkX graphs
@@ -39,7 +39,7 @@ S = {k: v for k, v in sorted(S.items(), key=lambda item: item[1], reverse=1)}   
 
 store_etns(S,file_name,gap,k,label=label)
 
-print(S)                                                                                    # diesen abschnitt mit dem Signature S muss ich mir nochmal genauer anschauen
+#print(S)                                                                                    # diesen abschnitt mit dem Signature S muss ich mir nochmal genauer anschauen
 
 # load etns 
 SS = load_etns(file_name,gap,k,label=label)

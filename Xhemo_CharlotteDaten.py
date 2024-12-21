@@ -21,10 +21,21 @@ def reorder_array(data):
     return reordered_data
 
 # Load the temporal graph as a sequence of static NetworkX graphs
-data = cs.load_data("Datasets/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
+data = cs.load_data("Datasets/"+file_name+".txt")                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
 
 # Umordnen des Arrays
 reordered_data = reorder_array(data)
+
+def time_changed_data(reordered_data):                                  # da Charlottes Daten an der Stelle, wo eig die Zeit stehen muss, {'weight': 1} stehen haben und sie in der E-Mail meinte die Daten sind 
+    new_data = np.zeros_like(reordered_data)                            # in der richtigen Reihenfolge platziert alle 10 Sekunden (falls ich das richtig verstanden habe), habe ich dann diese Funktion programmiert 
+    new_data[:, 0] = np.arange(0, len(reordered_data[:,0]) * 10, 10)    # die an der Stelle von 0 hochzählt und in jeder inkrementation (10,20,30,...) reinschreibt
+    new_data[:, 1] = reordered_data[:, 1]
+    new_data[:, 2] = reordered_data[:, 2]
+    return new_data
+
+new_data = time_changed_data(reordered_data)
+
+#print(new_data)
 
 #print(data)
 #nodes = cs.individuals(data)
@@ -35,12 +46,12 @@ else:
     meta_data = None
     
 if label:
-    graphs = cs.build_graphs(reordered_data,gap=gap,with_labels=label,meta_path="Datasets/metadata/metadata_"+file_name+".dat")
+    graphs = cs.build_graphs(new_data,gap=gap,with_labels=label,meta_path="Datasets/metadata/metadata_"+file_name+".dat")
 else:
-    graphs = cs.build_graphs(reordered_data,gap=gap,with_labels=label)                                # in "graphs" werden die static graphs gespeichert (das sind einfach temporal graphic snapshots at time t) (aus vielen temporal graphic snapshots kann man dann ETN bauen)
+    graphs = cs.build_graphs(new_data,gap=gap,with_labels=label)                                # in "graphs" werden die static graphs gespeichert (das sind einfach temporal graphic snapshots at time t) (aus vielen temporal graphic snapshots kann man dann ETN bauen)
     
-#print(graphs)    
-    
+print(graphs)
+
 
 # Count ETN or LETN and store the result
 S = count_ETN(graphs,k,meta=meta_data)
@@ -81,8 +92,6 @@ def buil_nm(graphs,n,file):
 
 
     f = open("null_models/"+file+"/"+file+"_"+str(n)+".txt", "a")
-
-                                                                             
 
     #directory = "null_models/"+file+"/"+file+"_"+str(n)+".txt"                             # hab ich gemacht, hab mich an res orientiert, da hier immer noch das Problem besteht, dass kein Ordner automatisch erstellt wird
     #if not os.path.exists(directory):

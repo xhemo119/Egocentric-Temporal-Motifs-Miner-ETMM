@@ -103,7 +103,7 @@ def build_graphs(data,gap=19,with_labels=False,meta_path=None):
         g = G.copy()
         for _,i,j in t:
             g.add_edge(i,j)
-        graphs.append(g)  
+        graphs.append(g)
 
     return(graphs)
 
