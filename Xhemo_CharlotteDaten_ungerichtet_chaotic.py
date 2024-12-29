@@ -1,4 +1,4 @@
-# ich versuche hier bisschen "ETMM.ipynb" nachzubauen aber mit Charlottes Daten (erstmal nur mit ungerichtet)
+# ich versuche hier bisschen "ETMM.ipynb" nachzubauen aber mit Charlottes Daten (hier nur mit ungerichtet/chaotic_01)
 import construction as cs
 from ETN import *
 from ETMM import *
@@ -13,18 +13,42 @@ file_name = "chaotic_01_graph_0"
 #G = nx.read_edgelist("Datasets/"+file_name)
 
 
+def load_data(path):                                                        # Ein spezielles load_data(), da die Daten von Charlotte so ausgelegt sind, dass {'weight': 1} als zwei array elemente gelten (wegen dem Leerzeichen)
+                                                                            # und nicht mehr nur 3 array elemente berücksichtig werden müssen (wie es im originalen ist) sondern 4
+    data = []
+    with open(path) as f:
+        for line in f:
+            tmp = line.split()[0:4]
+            tmp[2] = tmp[2]+tmp[3]                                          # Das hier wird gemacht, um "{'weight':" und "1}" als 1 Element zu haben
+            tmp[2] = int(1)                                                 # Und das wird gemacht, um aus "{'weight':1}" den integer 1 zu machen (kp ob ich das so machen soll mit der 1, aber falls nicht, dann kann ich hier easy diese Zeile einfach rausnehmen 
+            arr_tmp = [int(tmp[0]),int(tmp[1]),tmp[2]]                      # und "{'weight':1}" wird korrekt an der Stelle im array gespeichert)
+        
+            data.append(arr_tmp)
+    data = np.array(data)
+    return(data)
+
+
+
+# Load the temporal graph as a sequence of static NetworkX graphs
+data = load_data("Datasets/ungerichtet/chaotic_01/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
+
+#print(data)
+
 def reorder_array(data):
+    
     reordered_data = np.zeros_like(data)                            # Erstellt ein Array der gleichen Form wie data
+    
     reordered_data[:, 0] = data[:, -1]                              # Verschiebt die letzte Spalte auf die erste
     reordered_data[:, 1] = data[:, 0]                               # Verschiebt die erste Spalte auf die zweite
     reordered_data[:, 2] = data[:, 1]                               # Verschiebt die zweite Spalte auf die dritte
+    
     return reordered_data
 
-# Load the temporal graph as a sequence of static NetworkX graphs
-data = cs.load_data("Datasets/ungerichtet/chaotic_01/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
 
 # Umordnen des Arrays
 reordered_data = reorder_array(data)
+#print(reordered_data)
+
 
 def time_changed_data(reordered_data):                                  # da Charlottes Daten an der Stelle, wo eig die Zeit stehen muss, {'weight': 1} stehen haben und sie in der E-Mail meinte die Daten sind 
     new_data = np.zeros_like(reordered_data)                            # in der richtigen Reihenfolge platziert alle 10 Sekunden (falls ich das richtig verstanden habe), habe ich dann diese Funktion programmiert 
