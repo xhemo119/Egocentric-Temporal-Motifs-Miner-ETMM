@@ -8,7 +8,7 @@ from ETMM import *
 k = 2                                   # number of static snapshot used for the constructions of ETN
 gap = 300                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
-file_name = "damped_01_graph_0"
+file_name = "damped_01_graph_4"
 
 #G = nx.read_edgelist("Datasets/"+file_name)
 
@@ -21,7 +21,7 @@ def reorder_array(data):
     return reordered_data
 
 # Load the temporal graph as a sequence of static NetworkX graphs
-data = cs.load_data("Datasets/"+file_name+".txt")                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
+data = cs.load_data("Datasets/ungerichtet/damped_01/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
 
 # Umordnen des Arrays
 reordered_data = reorder_array(data)
