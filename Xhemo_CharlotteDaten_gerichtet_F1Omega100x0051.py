@@ -1,17 +1,15 @@
-# ich versuche hier bisschen "ETMM.ipynb" nachzubauen aber mit Charlottes Daten (hier nur mit ungerichtet/damped_01)
+# ich versuche hier bisschen "ETMM.ipynb" nachzubauen aber mit Charlottes Daten (hier nur mit gerichtet/F1_Omega100_x0051)
 import construction as cs
 import os
 from ETN import *
 from ETMM import *
 
 
-#for baba_nummer in range (7,31):
-
 # Parameters
 k = 2                                   # number of static snapshot used for the constructions of ETN
 gap = 300                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
-file_name = "damped_01_graph_0" #+ str(baba_nummer)
+file_name = "F1_Omega100_x0051_graph_0"
 
 #G = nx.read_edgelist("Datasets/"+file_name)
 
@@ -21,10 +19,10 @@ def load_data(path):                                                        # Ei
     data = []
     with open(path) as f:
         for line in f:
-            tmp = line.split()[0:4]
-            tmp[2] = tmp[2]+tmp[3]                                          # Das hier wird gemacht, um "{'weight':" und "1}" als 1 Element zu haben
+            tmp = line.split()[0:3]
+            #tmp[2] = tmp[2]+tmp[3]                                          # Das hier wird gemacht, um "{'weight':" und "1}" als 1 Element zu haben
             tmp[2] = int(1)                                                 # Und das wird gemacht, um aus "{'weight':1}" den integer 1 zu machen (kp ob ich das so machen soll mit der 1, aber falls nicht, dann kann ich hier easy diese Zeile einfach rausnehmen 
-            arr_tmp = [int(tmp[0]),int(tmp[1]),int(tmp[2])]                      # und "{'weight':1}" wird korrekt an der Stelle im array gespeichert)
+            arr_tmp = [int(tmp[0]),int(tmp[1]),tmp[2]]                      # und "{'weight':1}" wird korrekt an der Stelle im array gespeichert)
         
             data.append(arr_tmp)
     data = np.array(data)
@@ -33,10 +31,10 @@ def load_data(path):                                                        # Ei
 
 
 # Load the temporal graph as a sequence of static NetworkX graphs
-data = load_data("Datasets/ungerichtet/damped_01/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
+data = load_data("Datasets/gerichtet/F1_Omega100_x0051/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
 
-#print(data)
-
+print(data)
+'''
 def reorder_array(data):
     
     reordered_data = np.zeros_like(data)                            # Erstellt ein Array der gleichen Form wie data
@@ -118,7 +116,7 @@ def buil_nm(graphs,n,file):
     to_save = []
 
     
-    f = open("null_models/"+file+"/"+file+"_"+str(n)+".txt", "a")
+    f = open("null_models/"+file+"/"+file+"_"+str(n)+".txt", "x")
 
     #directory = "null_models/"+file+"/"+file+"_"+str(n)+".txt"                             # hab ich gemacht, hab mich an res orientiert, da hier immer noch das Problem besteht, dass kein Ordner automatisch erstellt wird
     #if not os.path.exists(directory):
@@ -187,3 +185,4 @@ for i in range(0,fig_per_row,fig_per_row):
         print("count \t = \t",ETM[i+j][1])
         draw_ETN(from_ETNS_to_ETN(ETM[i+j][0],k,meta_data),multiple=True)
     plt.show()
+'''
