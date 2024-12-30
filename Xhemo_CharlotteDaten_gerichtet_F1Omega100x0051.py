@@ -20,9 +20,8 @@ def load_data(path):                                                        # Ei
     with open(path) as f:
         for line in f:
             tmp = line.split()[0:3]
-            #tmp[2] = tmp[2]+tmp[3]                                          # Das hier wird gemacht, um "{'weight':" und "1}" als 1 Element zu haben
-            tmp[2] = int(1)                                                 # Und das wird gemacht, um aus "{'weight':1}" den integer 1 zu machen (kp ob ich das so machen soll mit der 1, aber falls nicht, dann kann ich hier easy diese Zeile einfach rausnehmen 
-            arr_tmp = [int(tmp[0]),int(tmp[1]),tmp[2]]                      # und "{'weight':1}" wird korrekt an der Stelle im array gespeichert)
+            tmp[2] = int(1)                                                 # Und das wird gemacht, um aus "{}" den integer 1 zu machen (kp ob ich das so machen soll mit der 1, aber falls nicht, dann kann ich hier easy diese Zeile einfach rausnehmen 
+            arr_tmp = [int(tmp[0]),int(tmp[1]),int(tmp[2])]                 # und "{}" wird korrekt an der Stelle im array gespeichert)
         
             data.append(arr_tmp)
     data = np.array(data)
@@ -33,8 +32,8 @@ def load_data(path):                                                        # Ei
 # Load the temporal graph as a sequence of static NetworkX graphs
 data = load_data("Datasets/gerichtet/F1_Omega100_x0051/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
 
-print(data)
-'''
+#print(data)
+
 def reorder_array(data):
     
     reordered_data = np.zeros_like(data)                            # Erstellt ein Array der gleichen Form wie data
@@ -48,7 +47,8 @@ def reorder_array(data):
 
 # Umordnen des Arrays
 reordered_data = reorder_array(data)
-#print(reordered_data)
+
+# print(reordered_data)
 
 
 def time_changed_data(reordered_data):                                  # da Charlottes Daten an der Stelle, wo eig die Zeit stehen muss, {'weight': 1} stehen haben und sie in der E-Mail meinte die Daten sind 
@@ -185,4 +185,3 @@ for i in range(0,fig_per_row,fig_per_row):
         print("count \t = \t",ETM[i+j][1])
         draw_ETN(from_ETNS_to_ETN(ETM[i+j][0],k,meta_data),multiple=True)
     plt.show()
-'''
