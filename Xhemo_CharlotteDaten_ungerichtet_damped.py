@@ -135,7 +135,7 @@ for i in range(0,5,fig_per_row):
     plt.show()
 
 
-
+'''
 # BUILD NULL MODELS                                                                         # verstehe die theorie hinter den null models noch nicht so richtig
 def buil_nm(graphs,n,file):
     t = 0
@@ -211,3 +211,4 @@ for i in range(0,fig_per_row,fig_per_row):
         print("count \t = \t",ETM[i+j][1])
         draw_ETN(from_ETNS_to_ETN(ETM[i+j][0],k,meta_data),multiple=True)
     plt.show()
+'''

@@ -30,13 +30,15 @@ if label:
 else:
     graphs = cs.build_graphs(data,gap=gap,with_labels=label)                                # in "graphs" werden die static graphs gespeichert (das sind einfach temporal graphic snapshots at time t) (aus vielen temporal graphic snapshots kann man dann ETN bauen)
     
-#print(graphs)    
-    
+#print(graphs)
+#print(len(list(graphs[0].neighbors(0))))
+
 
 # Count ETN or LETN and store the result
 S = count_ETN(graphs,k,meta=meta_data)
 S = {k: v for k, v in sorted(S.items(), key=lambda item: item[1], reverse=1)}               # das hier sortiert einfach die liste, sodass das etns was am meisten vorkommt ganz oben ist und das am wenigsten ganz unten
 
+'''
 store_etns(S,file_name,gap,k,label=label)
 
 #print(S)                                                                                    # diesen abschnitt mit dem Signature S muss ich mir nochmal genauer anschauen
@@ -137,3 +139,4 @@ for i in range(0,fig_per_row,fig_per_row):
         print("count \t = \t",ETM[i+j][1])
         draw_ETN(from_ETNS_to_ETN(ETM[i+j][0],k,meta_data),multiple=True)
     plt.show()
+'''

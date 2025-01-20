@@ -146,5 +146,6 @@ def split_input_data(data, gap=19):
             chunks.append(i)
             pos = times[i]
 
+
     return(np.split(data,chunks))
 
