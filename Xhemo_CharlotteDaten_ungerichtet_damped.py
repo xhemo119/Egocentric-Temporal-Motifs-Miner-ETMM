@@ -1,6 +1,13 @@
 # ich versuche hier bisschen "ETMM.ipynb" nachzubauen aber mit Charlottes Daten (hier nur mit ungerichtet/damped_01)
+
+# Der "damped" Datensatz bilden die Entwicklung einer Zeitreihe x=sin(5t)*e^(-0.1t) ab.
+
+
 import construction as cs
 import os
+import math
+import numpy as np
+from matplotlib import pyplot as plt
 from ETN import *
 from ETMM import *
 
@@ -14,6 +21,23 @@ label = False                           # if true, the loaded dataset is labeled
 file_name = "damped_01_graph_0" #+ str(baba_nummer)
 
 #G = nx.read_edgelist("Datasets/"+file_name)
+
+
+def damped_function(start, end):
+    # here the x=sin(5t)*e^(-0.1t) function is being used to get the 10 second samples
+
+    #for t in range(start, end):                                                                                # this is only if I want to print out every single step, which can be usefull in situations for the user if he doesn't understand something
+    #    print("The value x for t = " + str(t) + ". equals: " + str(math.sin(5*t)*math.exp(-0.1*t)))            # but for the code it is enough to only use the return, which is basically the same as this
+
+    return [math.sin(5*t)*math.exp(-0.1*t) for t in range(start, end)]
+
+def plot_dataset(start, end):
+    # here you simply have to put in which period you want to have of the dataset, but the period has to be 10 seconds long, so e.g. start = 0 and end = 10, or start = 20 and end = 30.
+    # this is not necessarily needed and will not be ausgeführt, but can be handy for testing and understanding the single steps
+
+    x = np.linspace(start, end, 10)
+    plt.plot(x, damped_function(start, end), color='red')
+    plt.show()
 
 
 def load_data(path):                                                        # Ein spezielles load_data(), da die Daten von Charlotte so ausgelegt sind, dass {'weight': 1} als zwei array elemente gelten (wegen dem Leerzeichen)
