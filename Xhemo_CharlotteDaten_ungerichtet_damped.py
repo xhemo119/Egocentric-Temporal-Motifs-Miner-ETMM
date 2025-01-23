@@ -67,7 +67,7 @@ def load_data(path):                                                        # Ei
             tmp = line.split()[0:4]
             tmp[2] = tmp[2]+tmp[3]                                          # Das hier wird gemacht, um "{'weight':" und "1}" als 1 Element zu haben
             tmp[2] = int(1)                                                 # Und das wird gemacht, um aus "{'weight':1}" den integer 1 zu machen (kp ob ich das so machen soll mit der 1, aber falls nicht, dann kann ich hier easy diese Zeile einfach rausnehmen 
-            arr_tmp = [int(tmp[0]),int(tmp[1]),int(tmp[2])]                      # und "{'weight':1}" wird korrekt an der Stelle im array gespeichert)
+            arr_tmp = [int(tmp[0]),int(tmp[1]),int(tmp[2])]                 # und "{'weight':1}" wird korrekt an der Stelle im array gespeichert)
         
             data.append(arr_tmp)
     data = np.array(data)
@@ -120,7 +120,7 @@ if label:
 else:
     graphs = cs.build_graphs(new_data,gap=gap,with_labels=label)                                # in "graphs" werden die static graphs gespeichert (das sind einfach temporal graphic snapshots at time t) (aus vielen temporal graphic snapshots kann man dann ETN bauen)
     
-print(graphs)
+#print(graphs)
 
 
 # Count ETN or LETN and store the result
