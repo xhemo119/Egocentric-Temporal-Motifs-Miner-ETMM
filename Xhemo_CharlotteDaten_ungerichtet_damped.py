@@ -210,7 +210,7 @@ tmp = load_etm_count(file_name,gap,k,label)
 assert(tmp == counts)
 
 
-print(counts)
+#print(counts)
 
 
 
