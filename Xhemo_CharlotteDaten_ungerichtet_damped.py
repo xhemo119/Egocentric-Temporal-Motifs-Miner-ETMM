@@ -15,10 +15,10 @@ from ETMM import *
 for baba_nummer in range (0,31):
 
     # Parameters
-    k = 2                                   # number of static snapshot used for the constructions of ETN
+    k = 3                                   # number of static snapshot used for the constructions of ETN
     gap = 0.5                               # temporal gap
     label = False                           # if true, the loaded dataset is labeled
-    file_name = "damped_01_graph_" + str(baba_nummer)
+    file_name = "chaotic_01_graph_" + str(baba_nummer)
 
     #G = nx.read_edgelist("Datasets/"+file_name)
 
@@ -76,7 +76,7 @@ for baba_nummer in range (0,31):
 
 
     # Load the temporal graph as a sequence of static NetworkX graphs
-    data = load_data("Datasets/ungerichtet/damped_01/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
+    data = load_data("Datasets/ungerichtet/chaotic_01/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
 
     #print(data)
 

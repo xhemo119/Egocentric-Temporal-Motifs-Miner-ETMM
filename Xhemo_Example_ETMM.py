@@ -38,7 +38,7 @@ else:
 S = count_ETN(graphs,k,meta=meta_data)
 S = {k: v for k, v in sorted(S.items(), key=lambda item: item[1], reverse=1)}               # das hier sortiert einfach die liste, sodass das etns was am meisten vorkommt ganz oben ist und das am wenigsten ganz unten
 
-'''
+
 store_etns(S,file_name,gap,k,label=label)
 
 #print(S)                                                                                    # diesen abschnitt mit dem Signature S muss ich mir nochmal genauer anschauen
@@ -139,4 +139,3 @@ for i in range(0,fig_per_row,fig_per_row):
         print("count \t = \t",ETM[i+j][1])
         draw_ETN(from_ETNS_to_ETN(ETM[i+j][0],k,meta_data),multiple=True)
     plt.show()
-'''
