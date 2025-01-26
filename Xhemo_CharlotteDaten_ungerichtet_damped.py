@@ -18,7 +18,7 @@ for baba_nummer in range (0,31):
     k = 2                                   # number of static snapshot used for the constructions of ETN
     gap = 0.5                               # temporal gap
     label = False                           # if true, the loaded dataset is labeled
-    file_name = "chaotic_01_graph_" + str(baba_nummer)
+    file_name = "damped_01_graph_" + str(baba_nummer)
 
     #G = nx.read_edgelist("Datasets/"+file_name)
 
@@ -76,7 +76,7 @@ for baba_nummer in range (0,31):
 
 
     # Load the temporal graph as a sequence of static NetworkX graphs
-    data = load_data("Datasets/ungerichtet/chaotic_01/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
+    data = load_data("Datasets/ungerichtet/damped_01/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
 
     #print(data)
 
@@ -161,18 +161,14 @@ for baba_nummer in range (0,31):
         t = 0
         to_save = []
 
-        
-        f = open("null_models/"+file+"/"+file+"_"+str(n)+".txt", "a")
+        f = open("null_models/"+file+"/"+file+"_"+str(n)+".txt", "w")                           # vorher war "a" statt "w", aber das war nerbig weil die files dann immer länger wurden weil einfach alles hinten rangepackt wurde, auch wenn man gap verändert hat
 
-        #directory = "null_models/"+file+"/"+file+"_"+str(n)+".txt"                             # hab ich gemacht, hab mich an res orientiert, da hier immer noch das Problem besteht, dass kein Ordner automatisch erstellt wird
-        #if not os.path.exists(directory):
-        #    os.makedirs(directory)
 
         for g in graphs:
             for e in g.edges():
                 s = str(t)+" "+str(e[0])+" "+str(e[1])+"\n"
                 f.write(s)
-            t = t + gap + 0.001                                                                     # hier stand vorher "t = t + gap + 1", aber kp why + 1
+            t = t + gap + 1                                                                     # kp why + 1, hab das mal mit 0.001 versucht aber dann kamen komplett crazy zahlen
         f.close()
 
     seed = 10
