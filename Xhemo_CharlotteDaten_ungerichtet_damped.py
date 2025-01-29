@@ -174,7 +174,7 @@ for baba_nummer in range (0,31):
     seed = 10
     n = 5
     null_models = shuffle_graphs(graphs,n,seed)
-    print(len(null_models))
+    #print(len(null_models))
 
     # store null models
     c = 0

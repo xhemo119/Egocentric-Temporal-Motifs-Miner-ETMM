@@ -44,7 +44,7 @@ def get_ETM(counts,alpha,beta,gamma):
         if(valid[k]==1):
             ETM.append([ETNS[k],counts[ETNS[k]][0]])
 
-    print("number of etns:\t",len(ETNS),"\nnumber of etm: \t",len(ETM))
+    print("Number of etns(from the null models):\t",len(ETNS),"\nNumber of etm: \t",len(ETM))
     return(ETM)
 
 
