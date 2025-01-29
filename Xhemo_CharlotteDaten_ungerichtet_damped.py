@@ -137,7 +137,7 @@ for baba_nummer in range (0,31):
     assert(SS == S)
 
 
-    S_array = list(S.keys())
+    #S_array = list(S.keys())
     #print(S_array[10])
     #print(from_ETNS_to_ETN(S_array[10],k=3,meta=None))
     #draw_ETN(from_ETNS_to_ETN(S_array[10],k=2,meta=None),multiple=False)                        # hier verstehe ich noch nicht so ganz, warum der Graph so gezeichnet wird und why S_array[10] benutzt wird, allgemein nochmal anschauen
