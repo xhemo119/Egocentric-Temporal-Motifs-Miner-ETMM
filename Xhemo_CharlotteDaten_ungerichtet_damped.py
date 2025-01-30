@@ -15,10 +15,10 @@ from ETMM import *
 for baba_nummer in range (0,31):
 
     # Parameters
-    k = 3                                   # number of static snapshot used for the constructions of ETN
+    k = 4                                   # number of static snapshot used for the constructions of ETN
     gap = 0.5                               # temporal gap
     label = False                           # if true, the loaded dataset is labeled
-    file_name = "chaotic_01_graph_" + str(baba_nummer)
+    file_name = "damped_01_graph_" + str(baba_nummer)
 
     #G = nx.read_edgelist("Datasets/"+file_name)
 
@@ -76,7 +76,7 @@ for baba_nummer in range (0,31):
 
 
     # Load the temporal graph as a sequence of static NetworkX graphs
-    data = load_data("Datasets/ungerichtet/chaotic_01/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
+    data = load_data("Datasets/ungerichtet/damped_01/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
 
     #print(data)
 
@@ -142,7 +142,7 @@ for baba_nummer in range (0,31):
     #print(from_ETNS_to_ETN(S_array[10],k=3,meta=None))
     #draw_ETN(from_ETNS_to_ETN(S_array[10],k=2,meta=None),multiple=False)                        # hier verstehe ich noch nicht so ganz, warum der Graph so gezeichnet wird und why S_array[10] benutzt wird, allgemein nochmal anschauen
 
-
+    '''
     # plot 6 most frequent ETN
     fig_per_row = 5
     S_array = list(S.keys())
@@ -153,7 +153,7 @@ for baba_nummer in range (0,31):
             print("count \t = \t",S[S_array[i+j]])
             draw_ETN(from_ETNS_to_ETN(S_array[i+j],k,meta_data),multiple=True)
         plt.show()
-
+    '''
 
 
     # BUILD NULL MODELS                                                                         # verstehe die theorie hinter den null models noch nicht so richtig
@@ -218,7 +218,8 @@ for baba_nummer in range (0,31):
 
     ETM = get_ETM(counts,alpha,beta,gamma)
 
-
+    #print(ETM[:5])
+    '''
     fig_per_row = 5
     for i in range(0,fig_per_row,fig_per_row):
         plt.figure(figsize=(12,3))
@@ -227,3 +228,4 @@ for baba_nummer in range (0,31):
             print("count \t = \t",ETM[i+j][1])
             draw_ETN(from_ETNS_to_ETN(ETM[i+j][0],k,meta_data),multiple=True)
         plt.show()
+    '''
