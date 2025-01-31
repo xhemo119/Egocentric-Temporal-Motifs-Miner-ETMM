@@ -284,6 +284,7 @@ def draw_ETN(ETN,multiple=False):
         if not(nodes_data[i] == {}):
             node_label[i] = nodes_data[i]["label"]
             
+    #print(pos)
             
     if (node_label == {}):
         nx.draw(ETN,pos=pos,node_size=100,alpha=0.9,with_labels=False)
@@ -309,6 +310,7 @@ def get_ids_and_k(ETN):
             ids.append(id_n)
         if int(k_tmp) > k:
             k = int(k_tmp)
+    
     return(ids,k)
 
 
