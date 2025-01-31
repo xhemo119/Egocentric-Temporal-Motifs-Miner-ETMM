@@ -16,9 +16,9 @@ for baba_nummer in range (0,31):
 
     # Parameters
     k = 4                                   # number of static snapshot used for the constructions of ETN
-    gap = 1                               # temporal gap
+    gap = 1                                 # temporal gap
     label = False                           # if true, the loaded dataset is labeled
-    file_name = "damped_01_graph_0" + str(baba_nummer)
+    file_name = "damped_01_graph_" + str(baba_nummer)
 
     #G = nx.read_edgelist("Datasets/"+file_name)
 
@@ -218,7 +218,7 @@ for baba_nummer in range (0,31):
 
     ETM = get_ETM(counts,alpha,beta,gamma)
 
-    print(ETM)
+    #print(ETM)
 
     fig_per_row = 5
     for i in range(0,fig_per_row,fig_per_row):
