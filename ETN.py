@@ -266,7 +266,7 @@ def build_ETN(graphs,v):
 
 
 
-def draw_ETN(ETN,multiple=False):
+def draw_ETN(ETN,S,ax,multiple=False):
     ids,k = get_ids_and_k(ETN)
     pos = dict()
     id_ego = []
@@ -285,9 +285,12 @@ def draw_ETN(ETN,multiple=False):
             node_label[i] = nodes_data[i]["label"]
             
     #print(pos)
+    #print(ids)
             
     if (node_label == {}):
-        nx.draw(ETN,pos=pos,node_size=100,alpha=0.9,with_labels=False)
+        nx.draw(ETN,pos=pos, ax=ax ,node_size=100, alpha=0.9, with_labels=True)
+        limits=plt.axis('on')                                                                               # turns on axis
+        ax.set_xlabel(S)
         nx.draw_networkx_nodes(ETN, pos, nodelist=id_ego, node_size=300, node_color='red',alpha=0.5)
     else:
         nx.draw(ETN,pos=pos,node_size=100,alpha=0.5)
