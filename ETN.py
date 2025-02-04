@@ -265,6 +265,17 @@ def build_ETN(graphs,v):
         return(None)
 
 
+def draw_barChart(S_keys, S_values):
+
+    S_keys_length = np.arange(len(S_keys))
+    plt.bar(S_keys_length, S_values, align = 'center', alpha = 0.5)
+    plt.xticks(S_keys_length, S_keys)
+    S_values_length = np.arange(len(S_keys))
+    #plt.yticks(S_values, S_values_length)
+
+    plt.show()
+
+
 
 def draw_ETN(ETN,S,ax,multiple=False):
     ids,k = get_ids_and_k(ETN)
