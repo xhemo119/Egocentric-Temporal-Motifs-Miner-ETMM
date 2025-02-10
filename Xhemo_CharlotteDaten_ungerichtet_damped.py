@@ -144,9 +144,9 @@ assert(SS == S)
 
 #print(list(S.keys()))
 #print(list(S.values()))
-draw_barChart(list(S.keys()), list(S.values()))
+#draw_barChart(list(S.keys()), list(S.values()))
 
-'''
+
 # plot 6 most frequent ETN
 fig_per_row = 5
 S_array = list(S.keys())
@@ -157,9 +157,11 @@ for i in range(0,5,fig_per_row):
         ax = plt.subplot(1,fig_per_row,j+1)
         print("count \t = \t",S[S_array[i+j]])
         draw_ETN(from_ETNS_to_ETN(S_array[i+j],k,meta_data), S_array[i+j][2:], ax, multiple=True)
-        #draw_barChart(list(S.keys()), list(S.values()))
+
     plt.show()
-'''
+
+draw_barChart(S_array, list(S.values()))
+
 
 
 # BUILD NULL MODELS                                                                         # verstehe die theorie hinter den null models noch nicht so richtig
