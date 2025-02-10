@@ -269,7 +269,8 @@ def draw_barChart(S_keys, S_values):
 
     S_keys_length = np.arange(len(S_keys))
     plt.bar(S_keys_length, S_values, align = 'center', alpha = 0.5)
-    plt.xticks(S_keys_length, S_keys)
+    filtered_S_keys = [filtered[2:] for filtered in S_keys]
+    plt.xticks(S_keys_length, filtered_S_keys)
     S_values_length = np.arange(len(S_keys))
     #plt.yticks(S_values, S_values_length)
 
