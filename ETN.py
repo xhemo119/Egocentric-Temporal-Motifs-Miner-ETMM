@@ -306,7 +306,7 @@ def draw_ETN(ETN,S,ax,multiple=False):
     #print(ids)
             
     if (node_label == {}):
-        nx.draw(ETN,pos=pos, ax=ax ,node_size=100, alpha=0.9, with_labels=True)
+        nx.draw(ETN, pos=pos, ax=ax ,node_size=100, alpha=0.9, with_labels=True)
         limits=plt.axis('on')                                                                               # turns on axis
         ax.set_xlabel(S, rotation=45)
         nx.draw_networkx_nodes(ETN, pos, nodelist=id_ego, node_size=300, node_color='red',alpha=0.5)
