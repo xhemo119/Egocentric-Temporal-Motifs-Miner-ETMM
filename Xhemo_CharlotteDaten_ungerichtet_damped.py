@@ -139,8 +139,8 @@ assert(SS == S)
 
 #S_array = list(S.keys())
 #print(list(S.values()))
-#print(from_ETNS_to_ETN(S_array[10],k=3,meta=None))
-#draw_ETN(from_ETNS_to_ETN(S_array[0],k=4,meta=None),S_array[0][2:],multiple=False)                        # hier verstehe ich noch nicht so ganz, warum der Graph so gezeichnet wird und why S_array[10] benutzt wird, allgemein nochmal anschauen
+#print(from_ETNS_to_ETN(S_array[10],k=3,meta=None))                                         # hier verstehe ich noch nicht so ganz, warum der Graph so gezeichnet wird und why S_array[10] benutzt wird, allgemein nochmal anschauen
+#draw_ETN(from_ETNS_to_ETN(S_array[0],k=2,meta=None),S_array[0][2:], ax ,multiple=False)                        
 
 #print(list(S.keys()))
 #print(list(S.values()))
