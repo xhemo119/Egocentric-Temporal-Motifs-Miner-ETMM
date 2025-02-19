@@ -283,12 +283,18 @@ def draw_ETN(ETN,S,ax,multiple=False):
     pos = dict()
     id_ego = []
     for t in range(k+1):
+        minus_sign = False
         for i in ids:
             if "*" in i:
                 id_ego.append(str(i)+"_"+str(t))
                 pos[str(i)+"_"+str(t)] = [t,int(i[0])]
             else:
-                pos[str(i)+"_"+str(t)] = [t,int(i)]
+                if minus_sign == False:
+                    pos[str(i)+"_"+str(t)] = [t,int(i)]
+                    minus_sign = True
+                else:
+                    pos[str(i)+"_"+str(t)] = [t,-int(i)]
+                    minus_sign = False
                 
     node_label = dict() 
     nodes_data = dict(ETN.nodes(data=True))
