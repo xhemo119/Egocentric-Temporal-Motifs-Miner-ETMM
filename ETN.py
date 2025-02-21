@@ -265,17 +265,22 @@ def build_ETN(graphs,v):
         return(None)
 
 
-def draw_barChart(S_keys, S_values):
+def label_adjuster(filtered_S_keys, k):
+    tmp = [filtered_S_keys[:][i:i+k+1] for i in range(0, len(filtered_S_keys), k+1)]
+    return "\n".join(str(tmp))
+
+
+def draw_barChart(S_keys, S_values, k):
 
     S_keys_length = np.arange(len(S_keys))
     plt.bar(S_keys_length, S_values, align = 'center', alpha = 0.5)
     filtered_S_keys = [filtered[2:] for filtered in S_keys]
-    plt.xticks(S_keys_length, filtered_S_keys, rotation=45)
+    adjusted_label = label_adjuster(S_keys, k)
+    plt.xticks(S_keys_length, adjusted_label)                                                                   # hier war vorher "plt.xticks(S_keys_length, filtered_S_keys, rotation=45)", allerdings ging das mit rotation=45 nur, wenn k=2. bei zu großem k haben sich die label wieder überschnitten.
     S_values_length = np.arange(len(S_keys))
     #plt.yticks(S_values, S_values_length)
 
     plt.show()
-
 
 
 def draw_ETN(ETN,S,ax,multiple=False):
@@ -306,10 +311,11 @@ def draw_ETN(ETN,S,ax,multiple=False):
     #print(ids)
             
     if (node_label == {}):
-        plt.ylim(-20, 20)
-        nx.draw(ETN, pos=pos, ax=ax ,node_size=100, alpha=0.9, with_labels=True)
+        plt.ylim(-20, 20)                                                                                   # setzt die limits auf der y-achse bei den gezeichneten graphen
+        nx.draw(ETN, pos=pos, ax=ax ,node_size=100, alpha=0.9, with_labels=False)
         limits=plt.axis('on')                                                                               # turns on axis
-        ax.set_xlabel(S, rotation=45)
+        adjusted_label = "\n".join([S[i:i+k+1] for i in range(0, len(S), k+1)])                             # die ETNS die zu lang sind, überschneiden sich. ich habe das erst mit rotation=45 gelöst (siehe eine Zeile weiter unten im Kommentar), allerdings ging das nur bei k = 2. für größere k haben sich die label wieder überschnitten
+        ax.set_xlabel(adjusted_label)                                                                       # wenn k = 2, dann kann ich hier auch "ax.set_xlabel(S, rotation=45)" benutzen, dann überschneiden sich die label nicht, da sie etwas rotiert sind. bei größerem k überschneiden sie sich allerdings wieder                                                     
         nx.draw_networkx_nodes(ETN, pos, nodelist=id_ego, node_size=300, node_color='red',alpha=0.5)
     else:
         nx.draw(ETN,pos=pos,node_size=100,alpha=0.5)
