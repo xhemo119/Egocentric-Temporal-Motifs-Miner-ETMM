@@ -160,7 +160,7 @@ for i in range(0,5,fig_per_row):
 
     plt.show()
 
-#draw_barChart(S_array, list(S.values()))
+draw_barChart(S_array, list(S.values()))
 
 
 
@@ -217,7 +217,7 @@ assert(tmp == counts)
 #print(counts)
 
 
-
+'''
 # APPLY STATISTICAL TEST                                                                    # den bre muss ich mir auch nochmal genauer anschauen
 
 alpha=0.01
@@ -226,7 +226,26 @@ gamma=5
 
 ETM = get_ETM(counts,alpha,beta,gamma)
 
-#print(ETM)
+
+# APPLY TEST BY ME
+'''
+N_G = np.array(list(counts.values()))[:,0]                                                  # N_G is the number of occurrences of sub-graph M in G
+N_G0 = np.array(list(counts.values()))[:,1:]                                                # N_G0 is the average number of occurrences of sub-graph M in the random graphs (G0)
+
+z = 0                                                                                       # iterator to go through the N_G0 list
+for i in N_G:
+    print("The number of occurences of a sub-graph M in G is: " + str(i))
+    print("The number of occurences of a sub-graph M in the random graphs is: " + str(N_G0[z]))
+    avr_num = np.mean(N_G0[z])
+    print("The average number of occurences of a sub-graph M in the random graphs is: " + str(avr_num))
+    diff = abs(i - avr_num)
+    print("The difference between them equals: " + str("{:.2f}".format(diff)))              # dieses "{:.2f}".format(diff) sorgt dafür, dass es nur 2 Nachkommastellen gibt
+    print( )
+    z = z + 1
+
+#print(N_G)
+#print(N_G0)
+
 '''
 fig_per_row = 5
 for i in range(0,fig_per_row,fig_per_row):
