@@ -306,6 +306,7 @@ def draw_ETN(ETN,S,ax,multiple=False):
     #print(ids)
             
     if (node_label == {}):
+        plt.ylim(-20, 20)
         nx.draw(ETN, pos=pos, ax=ax ,node_size=100, alpha=0.9, with_labels=True)
         limits=plt.axis('on')                                                                               # turns on axis
         ax.set_xlabel(S, rotation=45)
