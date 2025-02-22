@@ -265,19 +265,14 @@ def build_ETN(graphs,v):
         return(None)
 
 
-def label_adjuster(filtered_S_keys, k):
-    tmp = [filtered_S_keys[:][i:i+k+1] for i in range(0, len(filtered_S_keys), k+1)]
-    return "\n".join(str(tmp))
-
-
 def draw_barChart(S_keys, S_values, k):
 
     S_keys_length = np.arange(len(S_keys))
     plt.bar(S_keys_length, S_values, align = 'center', alpha = 0.5)
     filtered_S_keys = [filtered[2:] for filtered in S_keys]
-    adjusted_label = label_adjuster(S_keys, k)
-    plt.xticks(S_keys_length, adjusted_label)                                                                   # hier war vorher "plt.xticks(S_keys_length, filtered_S_keys, rotation=45)", allerdings ging das mit rotation=45 nur, wenn k=2. bei zu großem k haben sich die label wieder überschnitten.
-    S_values_length = np.arange(len(S_keys))
+    #adjusted_label = "\n".join(str([filtered_S_keys[i:i+k+1] for i in range(0, len(filtered_S_keys), k+1)]))                                   # ein Ansatz dafür, wenn ich das ohne rotation mache und mit alle k zeichen ein zeilenumbruch, aber irgendwie klappt das nicht so wie bei den normalen graphen
+    plt.xticks(ticks = S_keys_length, labels = filtered_S_keys, rotation=45)                                                                    # hier war vorher "plt.xticks(S_keys_length, filtered_S_keys, rotation=45)", allerdings ging das mit rotation=45 nur, wenn k=2. bei zu großem k haben sich die label wieder überschnitten.
+    #S_values_length = np.arange(len(S_keys))
     #plt.yticks(S_values, S_values_length)
 
     plt.show()
