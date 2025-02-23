@@ -306,12 +306,19 @@ def draw_ETN(ETN,S,ax,multiple=False):
     #print(ids)
             
     if (node_label == {}):
-        plt.ylim(-20, 20)                                                                                   # setzt die limits auf der y-achse bei den gezeichneten graphen
+        y_time = 52                                                                                                 # parameter der entscheidet, wo limit auf der y-achse des graphen ist
+        plt.ylim(-y_time, y_time)                                                                                   # setzt die limits auf der y-achse bei den gezeichneten graphen, parameter y_time erstellt zur einfachheit
         nx.draw(ETN, pos=pos, ax=ax ,node_size=100, alpha=0.9, with_labels=False)
-        limits=plt.axis('on')                                                                               # turns on axis
-        adjusted_label = "\n".join([S[i:i+k+1] for i in range(0, len(S), k+1)])                             # die ETNS die zu lang sind, überschneiden sich. ich habe das erst mit rotation=45 gelöst (siehe eine Zeile weiter unten im Kommentar), allerdings ging das nur bei k = 2. für größere k haben sich die label wieder überschnitten
-        ax.set_xlabel(adjusted_label)                                                                       # wenn k = 2, dann kann ich hier auch "ax.set_xlabel(S, rotation=45)" benutzen, dann überschneiden sich die label nicht, da sie etwas rotiert sind. bei größerem k überschneiden sie sich allerdings wieder                                                     
-        nx.draw_networkx_nodes(ETN, pos, nodelist=id_ego, node_size=300, node_color='red',alpha=0.5)
+        ax.arrow(0, -y_time+1, k, 0, head_width=1, head_length=0.2, fc='k', ec='k')                                 # der Pfeil ganz unten beim Graphen der den Zeitstrahl zeigen soll
+        tick_positions = [i for i in range(0, k+1, 1)]                                                              # gehört
+        for x, label in zip(tick_positions, tick_positions):                                                        # alles
+            ax.plot(x, -y_time+1, marker="|", color="k", markersize=8)  # Ticks                                     # zum 
+            ax.text(x, -y_time+4 - 0.05, label, ha='center', va='top', fontsize=7)  # Labels                        # Zeitstrahl Pfeil
+
+        limits=plt.axis('on')                                                                                       # turns on axis
+        adjusted_label = "\n".join([S[i:i+k+1] for i in range(0, len(S), k+1)])                                     # die ETNS die zu lang sind, überschneiden sich. ich habe das erst mit rotation=45 gelöst (siehe eine Zeile weiter unten im Kommentar), allerdings ging das nur bei k = 2. für größere k haben sich die label wieder überschnitten
+        ax.set_xlabel(adjusted_label)                                                                               # wenn k = 2, dann kann ich hier auch "ax.set_xlabel(S, rotation=45)" benutzen, dann überschneiden sich die label nicht, da sie etwas rotiert sind. bei größerem k überschneiden sie sich allerdings wieder                                                     
+        nx.draw_networkx_nodes(ETN, pos, nodelist=id_ego, node_size=100, node_color='red', alpha=0.5)
     else:
         nx.draw(ETN,pos=pos,node_size=100,alpha=0.5)
         nx.draw_networkx_nodes(ETN, pos, nodelist=id_ego, node_size=300, node_color='red',alpha=0.5)
@@ -319,6 +326,12 @@ def draw_ETN(ETN,S,ax,multiple=False):
 
     if not multiple:
         plt.show()
+
+#tick_labels = ["t=0", "t=1", "t=2", "t=3", "t=4"]  # Labels der Ticks
+
+#plt.show()
+
+
 
 
 # get unique ids (no time consideration)
