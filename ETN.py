@@ -305,26 +305,26 @@ def draw_ETN(ETN,S,ax,multiple=False):
     #print(pos)
     #print(ids)
             
-    def y_value(k):                                                                                                  # since the limits on the y-axe are different for every k, this function regulates it
+    def y_value(k):                                                                                                 # since the limits on the y-axe are different for every k, this function regulates it
         
         if k == 2:
-            return (20,2.5)
+            return (20, 2.5)                                                                                           # Laptop: (20, 2.5), PC: (19, 1.8)
         elif k == 3:
-            return (34,3)
+            return (34, 3)                                                                                           # Laptop: (34, 3), PC: (34, 2.8)
         elif k == 4:
-            return (52,4)
+            return (52, 4)                                                                                           # Laptop: (52, 4), PC: (52, 3.8)
         else:   # k ==5
-            return (76,5) 
+            return (76, 5)                                                                                           # Laptop: (76, 5), PC: (76, 4.8)
             
     if (node_label == {}):
-        y_axe,num = y_value(k)                                                                                              # parameter der entscheidet, wo limit auf der y-achse des graphen ist
-        plt.ylim(-y_axe, y_axe)                                                                                   # setzt die limits auf der y-achse bei den gezeichneten graphen, parameter y_axe erstellt zur einfachheit
+        y_axe, num = y_value(k)                                                                                   # parameter der entscheidet, wo limit auf der y-achse des graphen ist
+        plt.ylim(-y_axe, y_axe)                                                                                     # setzt die limits auf der y-achse bei den gezeichneten graphen, parameter y_axe erstellt zur einfachheit
         nx.draw(ETN, pos=pos, ax=ax ,node_size=100, alpha=0.9, with_labels=False)
-        ax.arrow(0, -y_axe+1, k+0.05, 0, head_width=1, head_length=0.1, fc='k', ec='k')                                 # der Pfeil ganz unten beim Graphen der den Zeitstrahl zeigen soll
+        ax.arrow(0, -y_axe+1, k+0.05, 0, head_width=1, head_length=0.1, fc='k', ec='k')                             # der Pfeil ganz unten beim Graphen der den Zeitstrahl zeigen soll
         tick_positions = [i for i in range(0, k+1, 1)]                                                              # gehört
         for x, label in zip(tick_positions, tick_positions):                                                        # alles
-            ax.plot(x, -y_axe+1, marker="|", color="k", markersize=8)  # Ticks                                     # zum 
-            ax.text(x, -y_axe+num - 0.05, label, ha='center', va='top', fontsize=7)  # Labels                        # Zeitstrahl Pfeil
+            ax.plot(x, -y_axe+1, marker="|", color="k", markersize=8)  # Ticks                                      # zum 
+            ax.text(x, -y_axe+num - 0.05, label, ha='center', va='top', fontsize=7)  # Labels                       # Zeitstrahl Pfeil
 
         limits=plt.axis('on')                                                                                       # turns on axis
         adjusted_label = "\n".join([S[i:i+k+1] for i in range(0, len(S), k+1)])                                     # die ETNS die zu lang sind, überschneiden sich. ich habe das erst mit rotation=45 gelöst (siehe eine Zeile weiter unten im Kommentar), allerdings ging das nur bei k = 2. für größere k haben sich die label wieder überschnitten
