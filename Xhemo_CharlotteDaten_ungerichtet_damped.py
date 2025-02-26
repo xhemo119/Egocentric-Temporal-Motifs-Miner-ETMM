@@ -160,7 +160,7 @@ for i in range(0,5,fig_per_row):
 
     plt.show()
 
-draw_barChart(S_array, list(S.values()), k)
+#draw_barChart(S_array, list(S.values()), k)
 
 
 
