@@ -309,13 +309,13 @@ def draw_ETN(ETN,S,ax,multiple=False):
     def y_value(k):                                                                                                  # since the limits on the y-axe are different for every k, this function regulates it
         
         if k == 2:
-            return (20, 2.5)                                                                                         # Laptop: (20, 2.5), PC: (19, 1.8)
+            return (24, 2.5)                                                                                         # Laptop: (24, 2.5), PC: (19, 1.8) (veraltet, muss +4 hin bei der ersten Zahl aber muss das mal am PC testen)
         elif k == 3:
-            return (34, 3)                                                                                           # Laptop: (34, 3), PC: (34, 2.8)
+            return (38, 3)                                                                                           # Laptop: (38, 3), PC: (34, 2.8) (veraltet, muss +4 hin bei der ersten Zahl aber muss das mal am PC testen)
         elif k == 4:
-            return (52, 4)                                                                                           # Laptop: (52, 4), PC: (52, 3.8)
+            return (56, 4)                                                                                           # Laptop: (56, 4), PC: (52, 3.8) (veraltet, muss +4 hin bei der ersten Zahl aber muss das mal am PC testen)
         else:   # k ==5
-            return (76, 5)                                                                                           # Laptop: (76, 5), PC: (76, 4.8)
+            return (80, 5)                                                                                           # Laptop: (80, 5), PC: (76, 4.8) (veraltet, muss +4 hin bei der ersten Zahl aber muss das mal am PC testen)
             
     if (node_label == {}):
         y_axe, num = y_value(k)                                                                                   # parameter der entscheidet, wo limit auf der y-achse des graphen ist
