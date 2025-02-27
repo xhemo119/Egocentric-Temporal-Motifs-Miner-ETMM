@@ -282,7 +282,8 @@ def draw_ETN(ETN,S,ax,multiple=False):
     ids,k = get_ids_and_k(ETN)
     pos = dict()
     id_ego = []
-    for t in range(k+1):
+    z = 5                                                                                                               # die Knoten haben y-Werte, allerdings sind diese hier nicht wichtig. Die Grafen sahen aber immer sehr unübersichtlich aus, deshalb dieses z was dafür sorgt, dass die Graphen gleichmäßig aufsteigende Knoten haben
+    for t in range(k+1):                                                                                                # neues Problem: wenn gleicher Knoten in zwei hintereinander folgenden k, dann wird das nicht erkannt
         minus_sign = False
         for i in ids:
             if "*" in i:
@@ -290,11 +291,13 @@ def draw_ETN(ETN,S,ax,multiple=False):
                 pos[str(i)+"_"+str(t)] = [t,int(i[0])]
             else:
                 if minus_sign == False:
-                    pos[str(i)+"_"+str(t)] = [t,int(i)]
+                    pos[str(i)+"_"+str(t)] = [t,z]
                     minus_sign = True
                 else:
-                    pos[str(i)+"_"+str(t)] = [t,-int(i)]
+                    pos[str(i)+"_"+str(t)] = [t,-z]
                     minus_sign = False
+            
+        z = z + 5
                 
     node_label = dict() 
     nodes_data = dict(ETN.nodes(data=True))
@@ -305,10 +308,10 @@ def draw_ETN(ETN,S,ax,multiple=False):
     #print(pos)
     #print(ids)
             
-    def y_value(k):                                                                                                 # since the limits on the y-axe are different for every k, this function regulates it
+    def y_value(k):                                                                                                  # since the limits on the y-axe are different for every k, this function regulates it
         
         if k == 2:
-            return (20, 2.5)                                                                                           # Laptop: (20, 2.5), PC: (19, 1.8)
+            return (20, 2.5)                                                                                         # Laptop: (20, 2.5), PC: (19, 1.8)
         elif k == 3:
             return (34, 3)                                                                                           # Laptop: (34, 3), PC: (34, 2.8)
         elif k == 4:
