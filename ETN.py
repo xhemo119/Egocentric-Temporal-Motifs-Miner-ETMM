@@ -282,22 +282,20 @@ def draw_ETN(ETN,S,ax,multiple=False):
     ids,k = get_ids_and_k(ETN)
     pos = dict()
     id_ego = []
-    z = 5                                                                                                               # die Knoten haben y-Werte, allerdings sind diese hier nicht wichtig. Die Grafen sahen aber immer sehr unübersichtlich aus, deshalb dieses z was dafür sorgt, dass die Graphen gleichmäßig aufsteigende Knoten haben
-    for t in range(k+1):                                                                                                # neues Problem: wenn gleicher Knoten in zwei hintereinander folgenden k, dann wird das nicht erkannt
+    for t in range(k+1):
         minus_sign = False
         for i in ids:
             if "*" in i:
                 id_ego.append(str(i)+"_"+str(t))
                 pos[str(i)+"_"+str(t)] = [t,int(i[0])]
             else:
-                if minus_sign == False:
-                    pos[str(i)+"_"+str(t)] = [t,z]
+                if minus_sign == False:                                                                
+                    pos[str(i)+"_"+str(t)] = [t,int(i)+4]                                                    
                     minus_sign = True
                 else:
-                    pos[str(i)+"_"+str(t)] = [t,-z]
+                    pos[str(i)+"_"+str(t)] = [t,-int(i)-4]
                     minus_sign = False
-            
-        z = z + 5
+        
                 
     node_label = dict() 
     nodes_data = dict(ETN.nodes(data=True))

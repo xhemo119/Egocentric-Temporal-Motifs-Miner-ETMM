@@ -1,9 +1,12 @@
 import numpy as np
 
-#x = np.load("Datasets/ungerichtet/damped_01/damped_01_time_series.npy")
+def log_einzeln(x, alpha=0.7):
+    x = float(x)
+    log_wert = alpha * np.log(x + 1)
+    result = np.exp(log_wert) - 1
+    return str(round(min(result, x), 2))
 
-#print(np.shape(x))
 
 
-
-print(np.linspace(0, 300, 31))
+ergebnis = log_einzeln(1, alpha=0.7)
+print(ergebnis)
