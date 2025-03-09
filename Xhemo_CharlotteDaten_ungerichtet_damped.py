@@ -160,7 +160,7 @@ for baba_nummer in range (15, 16):
 
         plt.show()
 
-    #draw_barChart(S_array, list(S.values()), k)
+    draw_barChart(S_array, list(S.values()), k)
 
 
 
