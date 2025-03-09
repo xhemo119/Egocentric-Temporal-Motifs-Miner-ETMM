@@ -199,7 +199,7 @@ def draw_barChart(S_keys, S_values_list, k, width, legend_labels=None):
     filtered_S_keys = [filtered[2:] for filtered in S_keys]
     formatted_labels = format_long_labels(filtered_S_keys, k+1)
 
-    plt.xticks(ticks=S_keys_length, labels=formatted_labels, ha='center')
+    plt.xticks(ticks=S_keys_length+0.5, labels=formatted_labels, ha='center')                                               # +0.5, damit label bei dem bar in der Mitte von den 3 steht, sonst steht das immer bei dem ersten
     
     plt.legend()  # Legende anzeigen
     plt.show()
