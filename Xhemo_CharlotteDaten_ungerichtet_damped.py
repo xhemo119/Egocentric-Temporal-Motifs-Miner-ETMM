@@ -12,10 +12,10 @@ from ETN import *
 from ETMM import *
 
 
-for baba_nummer in range (15, 16):
+for baba_nummer in range (0, 1):
 
     # Parameters
-    k = 2                                   # number of static snapshot used for the constructions of ETN
+    k = 3                                   # number of static snapshot used for the constructions of ETN
     gap = 0.5                               # temporal gap
     label = False                           # if true, the loaded dataset is labeled
     file_name = "chaotic_01_graph_" + str(baba_nummer)
