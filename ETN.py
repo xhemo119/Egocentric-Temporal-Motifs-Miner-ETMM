@@ -265,16 +265,6 @@ def build_ETN(graphs,v):
         return(None)
 
 
-
-def format_long_labels(labels, k):                                                  # teilt lange Zahlen in mehrere Zeilen auf und schreibt sie untereinander
-    formatted_labels = []
-    for label in labels:
-        split_label = '\n'.join([label[i:i+k] for i in range(0, len(label), k)])
-        formatted_labels.append(split_label)
-    return formatted_labels
-
-
-'''
 def format_long_labels(labels, k):                                                  # teilt lange Zahlen in mehrere Zeilen auf und schreibt sie untereinander
     formatted_labels = []
     for label in labels:
@@ -283,25 +273,11 @@ def format_long_labels(labels, k):                                              
                                      for i, part in enumerate(split_label)])
         formatted_labels.append(formatted_label)
     return formatted_labels
-'''
+
 
 def draw_barChart(S_keys, S_values, k):
+
     S_keys_length = np.arange(len(S_keys))
-
-    plt.bar(S_keys_length, S_values, align='center', alpha=0.5, label="Werte")  # Label für die Legende setzen
-    filtered_S_keys = [key[2:] for key in S_keys]
-    formatted_labels = format_long_labels(filtered_S_keys, k+1)
-
-    plt.xticks(ticks=S_keys_length, labels=formatted_labels, ha='center')
-
-    plt.legend()  # Legende anzeigen
-    plt.show()
-
-
-'''
-def draw_barChart(S_keys, S_values, k):
-
-    S_keys_length = np.arange(len(S_keys)) * 2
     plt.bar(S_keys_length, S_values, align = 'center', alpha = 0.5)
     filtered_S_keys = [filtered[2:] for filtered in S_keys]
     formatted_labels = format_long_labels(filtered_S_keys, k+1)
@@ -310,7 +286,7 @@ def draw_barChart(S_keys, S_values, k):
     #plt.xticks(ticks = S_keys_length, labels = filtered_S_keys, rotation=45) 
 
     plt.show()
-'''
+
 
 
 def draw_ETN(ETN,S,ax,multiple=False):
