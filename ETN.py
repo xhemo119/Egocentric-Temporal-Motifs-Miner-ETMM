@@ -277,7 +277,7 @@ def format_long_labels(labels, k):                                              
 
 def draw_barChart(S_keys, S_values, k):
 
-    S_keys_length = np.arange(len(S_keys))
+    S_keys_length = np.arange(len(S_keys)) * 2
     plt.bar(S_keys_length, S_values, align = 'center', alpha = 0.5)
     filtered_S_keys = [filtered[2:] for filtered in S_keys]
     formatted_labels = format_long_labels(filtered_S_keys, k+1)

@@ -12,10 +12,10 @@ from ETMM import *
 
 
 # Parameters
-k = 3                                   # number of static snapshot used for the constructions of ETN
+k = 4                                   # number of static snapshot used for the constructions of ETN
 gap = 0.5                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
-file_name = "chaotic_01_graph_0"
+file_name = "periodic_01_graph_0"
 
 
 
@@ -36,7 +36,7 @@ def load_data(path):                                                        # Ei
 
 
 # Load the temporal graph as a sequence of static NetworkX graphs
-data = load_data("Datasets/ungerichtet/chaotic_01/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
+data = load_data("Datasets/ungerichtet/periodic_01/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
 
 #print(data)
 
@@ -176,13 +176,15 @@ for i in N_G:
 '''
 
 
-
 def format_long_labels(labels, k):                                                  # teilt lange Zahlen in mehrere Zeilen auf und schreibt sie untereinander
     formatted_labels = []
     for label in labels:
-        split_label = '\n'.join([label[i:i+k] for i in range(0, len(label), k)])
-        formatted_labels.append(split_label)
+        split_label = [label[i:i+k] for i in range(0, len(label), k)]
+        formatted_label = '\n'.join([part + '-' if i < len(split_label) - 1 else part + ' ' 
+                                     for i, part in enumerate(split_label)])
+        formatted_labels.append(formatted_label)
     return formatted_labels
+
 
 
 def draw_barChart(S_keys, S_values_list, k, width, legend_labels=None):
@@ -206,14 +208,18 @@ def draw_barChart(S_keys, S_values_list, k, width, legend_labels=None):
     
 
 
-S_damped = load_etns("damped_01_graph_0",gap,k,label=label)
+S_damped = load_etns("damped_01_graph_30",gap,k,label=label)
 S_damped_values = list(S_damped.values())
+print("Damped:")
+print(S_damped_values)
 
-S_chaotic = load_etns("chaotic_01_graph_0",gap,k,label=label)
+S_chaotic = load_etns("chaotic_01_graph_30",gap,k,label=label)
 S_chaotic_values = list(S_chaotic.values())
+print("Chaotic:")
+print(S_chaotic_values)
 
-S_periodic = load_etns("periodic_01_graph_0",gap,k,label=label)
+S_periodic = load_etns("periodic_01_graph_30",gap,k,label=label)
 S_periodic_values = list(S_periodic.values())
 
 
-draw_barChart(S_array[:][:5], [S_damped_values[:5], S_chaotic_values[:5], S_periodic_values[:5]], k, 0.4, legend_labels=["Damped", "Chaotic", "Periodic"])
+draw_barChart(S_array[:][:3], [[1382, 243, 99], [1214, 246, 88], S_periodic_values[:3]], k, 0.4, legend_labels=["Damped", "Chaotic", "Periodic"])
