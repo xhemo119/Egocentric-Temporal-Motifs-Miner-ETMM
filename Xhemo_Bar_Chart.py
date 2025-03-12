@@ -12,7 +12,7 @@ from ETMM import *
 
 
 # Parameters
-k = 4                                   # number of static snapshot used for the constructions of ETN
+k = 2                                   # number of static snapshot used for the constructions of ETN
 gap = 0.5                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
 file_name = "periodic_01_graph_0"
@@ -91,6 +91,8 @@ SS = load_etns(file_name,gap,k,label=label)
 assert(SS == S)
 
 
+S_array = list(S.keys())                                                    # das steht hier nur, weil S_array ja eig hier drunter in dem auskommentierten deklariert wird
+'''
 # plot 6 most frequent ETN
 fig_per_row = 5
 S_array = list(S.keys())
@@ -105,7 +107,7 @@ for i in range(0,5,fig_per_row):
     plt.show()
 
 #draw_barChart(S_array, list(S.values()), k)
-
+'''
 
 # BUILD NULL MODELS                                                                         # verstehe die theorie hinter den null models noch nicht so richtig
 def build_nm(graphs,n,file):
@@ -187,39 +189,43 @@ def format_long_labels(labels, k):                                              
 
 
 
-def draw_barChart(S_keys, S_values_list, k, width, legend_labels=None):
+def draw_barChart(S_keys, S_values_list_std, S_values_list_avg, k, width, legend_labels_std, legend_labels_avg):
     S_keys_length = np.arange(len(S_keys)) * 2
-    
-    if legend_labels is None:
-        legend_labels = [f"Werte {i+1}" for i in range(len(S_values_list))]
+
     
     colors = ['b', 'r', 'g', 'c', 'm', 'y', 'k']
 
-    for i, S_values in enumerate(S_values_list):
-        plt.bar(S_keys_length + i * (width + 0.1), S_values, align='center', alpha=0.7, width=width, label=legend_labels[i], color=colors[i % len(colors)])
+    for i, S_values in enumerate(S_values_list_std):
+        plt.bar(S_keys_length + i * (width + 0.1), S_values, align='center', alpha=1, width=width, label=legend_labels_std[i], color=colors[i % len(colors)])
 
+    for i, S_values in enumerate(S_values_list_avg):
+        plt.bar(S_keys_length + i * (width + 0.1), S_values, align='center', alpha=0.3, width=width, label=legend_labels_avg[i], color=colors[i % len(colors)])
+
+
+
+    
     filtered_S_keys = [filtered[2:] for filtered in S_keys]
     formatted_labels = format_long_labels(filtered_S_keys, k+1)
 
     plt.xticks(ticks=S_keys_length+0.5, labels=formatted_labels, ha='center')                                               # +0.5, damit label bei dem bar in der Mitte von den 3 steht, sonst steht das immer bei dem ersten
     
-    plt.legend()  # Legende anzeigen
+    plt.legend(fontsize=17)  # Legende anzeigen
     plt.show()
     
 
 
-S_damped = load_etns("damped_01_graph_30",gap,k,label=label)
+S_damped = load_etns("damped_01_graph_0",gap,k,label=label)
 S_damped_values = list(S_damped.values())
-print("Damped:")
-print(S_damped_values)
+#print("Damped:")
+#print(S_damped_values)
 
-S_chaotic = load_etns("chaotic_01_graph_30",gap,k,label=label)
+S_chaotic = load_etns("chaotic_01_graph_0",gap,k,label=label)
 S_chaotic_values = list(S_chaotic.values())
-print("Chaotic:")
-print(S_chaotic_values)
+#print("Chaotic:")
+#print(S_chaotic_values)
 
-S_periodic = load_etns("periodic_01_graph_30",gap,k,label=label)
+S_periodic = load_etns("periodic_01_graph_0",gap,k,label=label)
 S_periodic_values = list(S_periodic.values())
 
 
-draw_barChart(S_array[:][:3], [[1382, 243, 99], [1214, 246, 88], S_periodic_values[:3]], k, 0.4, legend_labels=["Damped", "Chaotic", "Periodic"])
+draw_barChart(S_array[:][:3], [S_damped_values[:3], S_chaotic_values[:3], S_periodic_values[:3]], [[1711.2, 0.2, 738.0], [1659.2, 0.0, 710.4], [2384.4, 0.0, 1089.0]], k, 0.4, legend_labels_std=["Damped", "Chaotic", "Periodic"], legend_labels_avg=["Damped(avg.)", "Chaotic(avg.)", "Periodic(avg.)"])
