@@ -15,10 +15,10 @@ from ETMM import *
 #for baba_nummer in range (0, 1):
 
 # Parameters
-k = 2                                   # number of static snapshot used for the constructions of ETN
+k = 4                                   # number of static snapshot used for the constructions of ETN
 gap = 0.5                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
-file_name = "damped_01_graph_15" #+ str(baba_nummer)
+file_name = "damped_01_graph_30" #+ str(baba_nummer)
 
 #G = nx.read_edgelist("Datasets/"+file_name)
 
@@ -160,7 +160,7 @@ for i in range(0,5,fig_per_row):
 
     plt.show()
 
-draw_barChart(S_array[:][:5], list(S.values())[:5], k)
+#draw_barChart(S_array[:][:5], list(S.values())[:5], k)
 
 
 
