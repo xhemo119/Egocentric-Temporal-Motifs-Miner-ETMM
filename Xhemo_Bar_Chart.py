@@ -12,7 +12,7 @@ from ETMM import *
 
 
 # Parameters
-k = 2                                   # number of static snapshot used for the constructions of ETN
+k = 4                                   # number of static snapshot used for the constructions of ETN
 gap = 0.5                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
 file_name = "periodic_01_graph_0"
@@ -181,10 +181,17 @@ for i in N_G:
 def format_long_labels(labels, k):                                                  # teilt lange Zahlen in mehrere Zeilen auf und schreibt sie untereinander
     formatted_labels = []
     for label in labels:
-        split_label = [label[i:i+k] for i in range(0, len(label), k)]
-        formatted_label = '\n'.join([part + '-' if i < len(split_label) - 1 else part + ' ' 
-                                     for i, part in enumerate(split_label)])
-        formatted_labels.append(formatted_label)
+        split_label = [label[i:i + k * 2] for i in range(0, len(label), k * 2)]  # Teile nach k*2 Zeichen
+        formatted_parts = []
+        
+        for i, part in enumerate(split_label):
+            first_half = part[:k] + "-" if len(part) > k else part  # Erstes Teilstück mit Bindestrich
+            second_half = part[k:] + (" " if i == len(split_label) - 1 else "-") if len(part) > k else ""
+
+            formatted_parts.append(first_half + second_half)
+
+        formatted_labels.append("\n".join(formatted_parts))
+
     return formatted_labels
 
 
@@ -207,25 +214,26 @@ def draw_barChart(S_keys, S_values_list_std, S_values_list_avg, k, width, legend
     filtered_S_keys = [filtered[2:] for filtered in S_keys]
     formatted_labels = format_long_labels(filtered_S_keys, k+1)
 
-    plt.xticks(ticks=S_keys_length+0.5, labels=formatted_labels, ha='center')                                               # +0.5, damit label bei dem bar in der Mitte von den 3 steht, sonst steht das immer bei dem ersten
+    plt.xticks(ticks=S_keys_length+0.5, labels=formatted_labels, ha='center', fontsize=18)                                               # +0.5, damit label bei dem bar in der Mitte von den 3 steht, sonst steht das immer bei dem ersten
+    plt.yticks(fontsize=15)
     
     plt.legend(fontsize=17)  # Legende anzeigen
     plt.show()
     
 
 
-S_damped = load_etns("damped_01_graph_0",gap,k,label=label)
+S_damped = load_etns("damped_01_graph_30",gap,k,label=label)
 S_damped_values = list(S_damped.values())
 #print("Damped:")
 #print(S_damped_values)
 
-S_chaotic = load_etns("chaotic_01_graph_0",gap,k,label=label)
+S_chaotic = load_etns("chaotic_01_graph_30",gap,k,label=label)
 S_chaotic_values = list(S_chaotic.values())
 #print("Chaotic:")
 #print(S_chaotic_values)
 
-S_periodic = load_etns("periodic_01_graph_0",gap,k,label=label)
+S_periodic = load_etns("periodic_01_graph_30",gap,k,label=label)
 S_periodic_values = list(S_periodic.values())
 
 
-draw_barChart(S_array[:][:3], [S_damped_values[:3], S_chaotic_values[:3], S_periodic_values[:3]], [[1711.2, 0.2, 738.0], [1659.2, 0.0, 710.4], [2384.4, 0.0, 1089.0]], k, 0.4, legend_labels_std=["Damped", "Chaotic", "Periodic"], legend_labels_avg=["Damped(avg.)", "Chaotic(avg.)", "Periodic(avg.)"])
+draw_barChart(S_array[:][:3], [[1382, 243, 99], [1214, 246, 88], S_periodic_values[:3]], [[1618.6, 0.0, 712.0], [1599.6, 0.0, 664.0], [2319.8, 0.0, 1078.6]], k, 0.4, legend_labels_std=["Damped", "Chaotic", "Periodic"], legend_labels_avg=["Damped(avg.)", "Chaotic(avg.)", "Periodic(avg.)"])
