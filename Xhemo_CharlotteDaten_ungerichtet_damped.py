@@ -240,7 +240,7 @@ for i in N_G:
     print("The average number of occurences of a sub-graph M in the random graphs is: " + str(avr_num))
     diff = abs(i - avr_num)
     print("The difference between them equals: " + str("{:.1f}".format(diff)))              # dieses "{:.1f}".format(diff) sorgt dafür, dass es nur 2 Nachkommastellen gibt
-    print("The deviation equals: " + str(diff/i))
+    print("The deviation equals: " + str(diff/i))                                           
     print( )
     z = z + 1
 
