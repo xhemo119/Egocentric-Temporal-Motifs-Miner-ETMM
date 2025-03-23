@@ -12,7 +12,7 @@ from ETMM import *
 
 
 # Parameters
-k = 4                                   # number of static snapshot used for the constructions of ETN
+k = 2                                   # number of static snapshot used for the constructions of ETN
 gap = 0.5                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
 file_name = "periodic_01_graph_0"
@@ -196,19 +196,14 @@ def format_long_labels(labels, k):                                              
 
 
 
-def draw_barChart(S_keys, S_values_list_std, S_values_list_avg, k, width, legend_labels_std, legend_labels_avg):
+def draw_barChart(S_keys, S_values_list, k, width, legend_labels):
     S_keys_length = np.arange(len(S_keys)) * 2
 
     
     colors = ['b', 'r', 'g', 'c', 'm', 'y', 'k']
 
-    for i, S_values in enumerate(S_values_list_std):
-        plt.bar(S_keys_length + i * (width + 0.1), S_values, align='center', alpha=1, width=width, label=legend_labels_std[i], color=colors[i % len(colors)])
-
-    for i, S_values in enumerate(S_values_list_avg):
-        plt.bar(S_keys_length + i * (width + 0.1), S_values, align='center', alpha=0.3, width=width, label=legend_labels_avg[i], color=colors[i % len(colors)])
-
-
+    for i, S_values in enumerate(S_values_list):
+        plt.bar(S_keys_length + i * (width + 0.1), S_values, align='center', alpha=1, width=width, label=legend_labels[i], color=colors[i % len(colors)])
 
     
     filtered_S_keys = [filtered[2:] for filtered in S_keys]
@@ -236,4 +231,4 @@ S_periodic = load_etns("periodic_01_graph_30",gap,k,label=label)
 S_periodic_values = list(S_periodic.values())
 
 
-draw_barChart(S_array[:][:3], [[1382, 243, 99], [1214, 246, 88], S_periodic_values[:3]], [[1618.6, 0.0, 712.0], [1599.6, 0.0, 664.0], [2319.8, 0.0, 1078.6]], k, 0.4, legend_labels_std=["Damped", "Chaotic", "Periodic"], legend_labels_avg=["Damped(avg.)", "Chaotic(avg.)", "Periodic(avg.)"])
+draw_barChart(S_array[:][:3], [[6.7, 10.8, 1.9], [99.96, 100, 100], [653.1, 617.6, 917.8]], k, 0.4, legend_labels=["Damped", "Chaotic", "Periodic"])
