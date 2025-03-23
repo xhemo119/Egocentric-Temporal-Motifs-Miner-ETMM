@@ -12,7 +12,7 @@ from ETMM import *
 
 
 # Parameters
-k = 2                                   # number of static snapshot used for the constructions of ETN
+k = 4                                   # number of static snapshot used for the constructions of ETN
 gap = 0.5                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
 file_name = "periodic_01_graph_0"
@@ -203,16 +203,16 @@ def draw_barChart(S_keys, S_values_list, k, width, legend_labels):
     colors = ['b', 'r', 'g', 'c', 'm', 'y', 'k']
 
     for i, S_values in enumerate(S_values_list):
-        plt.bar(S_keys_length + i * (width + 0.1), S_values, align='center', alpha=1, width=width, label=legend_labels[i], color=colors[i % len(colors)])
-
+        bars = plt.bar(S_keys_length + i * (width + 0.1), S_values, align='center', alpha=1, width=width, label=legend_labels[i], color=colors[i % len(colors)])
+        plt.bar_label(bars, fmt="%.1f", padding=1, fontsize=18, fontweight="bold")                                                      # das ist dafür, dass über den Balken die values stehen
     
     filtered_S_keys = [filtered[2:] for filtered in S_keys]
     formatted_labels = format_long_labels(filtered_S_keys, k+1)
 
-    plt.xticks(ticks=S_keys_length+0.5, labels=formatted_labels, ha='center', fontsize=20)                                               # +0.5, damit label bei dem bar in der Mitte von den 3 steht, sonst steht das immer bei dem ersten
-    plt.yticks(fontsize=20)
+    plt.xticks(ticks=S_keys_length+0.5, labels=formatted_labels, ha='center', fontsize=23)                                               # +0.5, damit label bei dem bar in der Mitte von den 3 steht, sonst steht das immer bei dem ersten
+    plt.yticks(fontsize=23)
     
-    plt.legend(fontsize=20)  # Legende anzeigen
+    plt.legend(fontsize=23)  # Legende anzeigen
     plt.show()
     
 
@@ -231,4 +231,4 @@ S_periodic = load_etns("periodic_01_graph_30",gap,k,label=label)
 S_periodic_values = list(S_periodic.values())
 '''
 
-draw_barChart(S_array[:][:3], [[6.7, 10.8, 1.9], [99.96, 100, 100], [653.1, 617.6, 917.8]], k, 0.4, legend_labels=["Damped", "Chaotic", "Periodic"])
+draw_barChart(S_array[:][:3], [[17.1, 100, 619.2], [31.8, 100, 654.5], [3.1, 100, 908.0]], k, 0.4, legend_labels=["Damped", "Chaotic", "Periodic"])
