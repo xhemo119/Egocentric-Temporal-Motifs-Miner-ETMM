@@ -209,14 +209,14 @@ def draw_barChart(S_keys, S_values_list, k, width, legend_labels):
     filtered_S_keys = [filtered[2:] for filtered in S_keys]
     formatted_labels = format_long_labels(filtered_S_keys, k+1)
 
-    plt.xticks(ticks=S_keys_length+0.5, labels=formatted_labels, ha='center', fontsize=18)                                               # +0.5, damit label bei dem bar in der Mitte von den 3 steht, sonst steht das immer bei dem ersten
-    plt.yticks(fontsize=15)
+    plt.xticks(ticks=S_keys_length+0.5, labels=formatted_labels, ha='center', fontsize=20)                                               # +0.5, damit label bei dem bar in der Mitte von den 3 steht, sonst steht das immer bei dem ersten
+    plt.yticks(fontsize=20)
     
-    plt.legend(fontsize=17)  # Legende anzeigen
+    plt.legend(fontsize=20)  # Legende anzeigen
     plt.show()
     
 
-
+'''
 S_damped = load_etns("damped_01_graph_30",gap,k,label=label)
 S_damped_values = list(S_damped.values())
 #print("Damped:")
@@ -229,6 +229,6 @@ S_chaotic_values = list(S_chaotic.values())
 
 S_periodic = load_etns("periodic_01_graph_30",gap,k,label=label)
 S_periodic_values = list(S_periodic.values())
-
+'''
 
 draw_barChart(S_array[:][:3], [[6.7, 10.8, 1.9], [99.96, 100, 100], [653.1, 617.6, 917.8]], k, 0.4, legend_labels=["Damped", "Chaotic", "Periodic"])
