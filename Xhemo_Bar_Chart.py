@@ -199,12 +199,16 @@ def format_long_labels(labels, k):                                              
 def draw_barChart(S_keys, S_values_list, k, width, legend_labels):
     S_keys_length = np.arange(len(S_keys)) * 2
 
-    
     colors = ['b', 'r', 'g', 'c', 'm', 'y', 'k']
 
     for i, S_values in enumerate(S_values_list):
         bars = plt.bar(S_keys_length + i * (width + 0.1), S_values, align='center', alpha=1, width=width, label=legend_labels[i], color=colors[i % len(colors)])
-        plt.bar_label(bars, fmt="%.1f", padding=1, fontsize=18, fontweight="bold")                                                      # das ist dafür, dass über den Balken die values stehen
+
+        fmt_list = ["%.1f%%" for _ in S_values]                                                                                                             # das ist dafür, dass bei dem zweiten ETNS kein % steht, da es kein Prozentualer Wert ist
+        fmt_list[1] = "%.1f"
+
+        plt.bar_label(bars, labels=[fmt % val for fmt, val in zip(fmt_list, S_values)], padding=1, fontsize=18, fontweight="bold")                          # das ist dafür, dass über den Balken die values stehen
+
     
     filtered_S_keys = [filtered[2:] for filtered in S_keys]
     formatted_labels = format_long_labels(filtered_S_keys, k+1)
@@ -231,4 +235,4 @@ S_periodic = load_etns("periodic_01_graph_30",gap,k,label=label)
 S_periodic_values = list(S_periodic.values())
 '''
 
-draw_barChart(S_array[:][:3], [[17.1, 100, 619.2], [31.8, 100, 654.5], [3.1, 100, 908.0]], k, 0.4, legend_labels=["Damped", "Chaotic", "Periodic"])
+draw_barChart(S_array[:][:3], [[17.1, 243, 619.2], [31.8, 246, 654.5], [3.1, 606, 908.0]], k, 0.4, legend_labels=["Damped", "Chaotic", "Periodic"])
