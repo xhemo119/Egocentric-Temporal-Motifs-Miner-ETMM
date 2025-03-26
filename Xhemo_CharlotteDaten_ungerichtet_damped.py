@@ -189,13 +189,13 @@ N_G0 = np.array(list(counts.values()))[:,1:]                                    
 
 z = 0                                                                                       # iterator to go through the N_G0 list
 for i in N_G:
-    print("The number of occurences of a sub-graph M in G is: " + str(i))
-    print("The number of occurences of a sub-graph M in the random graphs is: " + str(N_G0[z]))
+    print("The number of occurences of some ETN in the original dataset is: " + str(i))
+    print("The number of occurences of the same ETN in the null models is: " + str(N_G0[z]))
     avr_num = np.mean(N_G0[z])
-    print("The average number of occurences of a sub-graph M in the random graphs is: " + str(avr_num))
+    print("The average number of occurences of the ETN in the null models is: " + str(avr_num))
     diff = abs(i - avr_num)
-    print("The difference between them equals: " + str("{:.1f}".format(diff)))              # dieses "{:.1f}".format(diff) sorgt dafür, dass es nur 2 Nachkommastellen gibt
-    print("The deviation equals: " + str((diff/i)*100))                                           
+    print("The absolute deviation between them equals: " + str("{:.1f}".format(diff)))              # dieses "{:.1f}".format(diff) sorgt dafür, dass es nur 2 Nachkommastellen gibt
+    print("The percentage deviation equals: " + str((diff/i)*100))                                           
     print( )
     z = z + 1
 
