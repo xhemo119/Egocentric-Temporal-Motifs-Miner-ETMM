@@ -23,39 +23,6 @@ file_name = "damped_01_graph_30" #+ str(baba_nummer)
 #G = nx.read_edgelist("Datasets/"+file_name)
 
 
-def damped_function(start, end):
-    # here the x=sin(5t)*e^(-0.1t) function is being used to get the 10 second samples
-
-    #for t in range(start, end):                                                                                # this is only if I want to print out every single step, which can be usefull in situations for the user if he doesn't understand something
-    #    print("The value x for t = " + str(t) + ". equals: " + str(math.sin(5*t)*math.exp(-0.1*t)))            # but for the code it is enough to only use the return, which is basically the same as this
-
-    return [math.sin(5*t)*math.exp(-0.1*t) for t in range(start, end)]
-
-def plot_dataset(start, end):
-    # here you simply have to put in which period you want to have of the dataset, but the period has to be 10 seconds long, so e.g. start = 0 and end = 10, or start = 20 and end = 30.
-    # this is not necessarily needed and will not be ausgeführt, but can be handy for testing and understanding the single steps
-
-    x = np.linspace(start, end, 10)
-    plt.plot(x, damped_function(start, end), color='red')
-    plt.show()
-
-def check_visibility(y_a, y_b, y_c, t_a, t_b, t_c):
-    # here the [1] function that is used in the source "https://www.pnas.org/doi/epdf/10.1073/pnas.0709247105" is being replicated
-    # this function is for checking if two data values in a time series will also have a connection in the transformed graph
-
-    # the idea is that the function will return a "True", if the visibility criteria is fulfilled, which means that there is a
-    # straight line that connects the data values in the time series, which also means that in the graph these two nodes will have a link 
-    
-    # ich muss noch schauen wie ich das mache später im Code, aber es heißt: 
-    # "two arbitrary data values (t_a, y_a) and (t_b, y_b) will have
-    # visibility, and consequently will become two connected nodes of
-    # the associated graph, if any other data (t_c, y_c) placed between(!!!)
-    # them fulfills..."
-    # also vllt muss ich hier auch ne schleife einbauen, der alle Werte dazwischen anschaut, aber vllt mach ich das auch dort wo die Funktion aufgerufen wird
-
-    # und ich muss noch gucken wie genau ich das mit t_a/b/c mache, aber glaube das kann ich einfach mit damped_function() machen
-
-    return y_c < y_b + ((y_a - y_b)*((t_b - t_c)/(t_b - t_a)))
 
 
 
