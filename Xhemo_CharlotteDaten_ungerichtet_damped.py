@@ -1,8 +1,3 @@
-# ich versuche hier bisschen "ETMM.ipynb" nachzubauen aber mit Charlottes Daten (hier nur mit ungerichtet/damped_01)
-
-# Der "damped" Datensatz bilden die Entwicklung einer Zeitreihe x=sin(5t)*e^(-0.1t) ab.
-
-
 import construction as cs
 import os
 import math
@@ -12,18 +7,11 @@ from ETN import *
 from ETMM import *
 
 
-#for baba_nummer in range (0, 1):
-
 # Parameters
 k = 4                                   # number of static snapshot used for the constructions of ETN
 gap = 0.5                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
-file_name = "damped_01_graph_30" #+ str(baba_nummer)
-
-#G = nx.read_edgelist("Datasets/"+file_name)
-
-
-
+file_name = "damped_01_graph_30"
 
 
 def load_data(path):                                                        # Ein spezielles load_data(), da die Daten von Charlotte so ausgelegt sind, dass {'weight': 1} als zwei array elemente gelten (wegen dem Leerzeichen)
