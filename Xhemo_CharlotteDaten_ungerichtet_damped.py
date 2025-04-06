@@ -11,7 +11,7 @@ from ETMM import *
 k = 4                                   # number of static snapshot used for the constructions of ETN
 gap = 0.5                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
-file_name = "damped_01_graph_30"
+file_name = "periodic_01_graph_3"
 
 
 def load_data(path):                                                        # Ein spezielles load_data(), da die Daten von Charlotte so ausgelegt sind, dass {'weight': 1} als zwei array elemente gelten (wegen dem Leerzeichen)
@@ -31,7 +31,7 @@ def load_data(path):                                                        # Ei
 
 
 # Load the temporal graph as a sequence of static NetworkX graphs
-data = load_data("Datasets/ungerichtet/damped_01/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
+data = load_data("Datasets/ungerichtet/periodic_01/"+file_name)                   # hier nicht vergessen immer die Endungen (zB .txt) zu ändern, wenn oben file_name geändert wird
 
 #print(data)
 

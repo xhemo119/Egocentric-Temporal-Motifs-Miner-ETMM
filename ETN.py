@@ -320,13 +320,13 @@ def draw_ETN(ETN,S,ax,multiple=False):
     def y_value(k):                                                                                                  # since the limits on the y-axe are different for every k, this function regulates it
         
         if k == 2:
-            return (34, 4.5)                                                                                         # Laptop: (24, 2.5), PC: (19, 1.8) (veraltet, muss +4 hin bei der ersten Zahl aber muss das mal am PC testen)
+            return (36, 6)                                                                                         # Laptop: (24, 2.5), PC: (19, 1.8) (veraltet, muss +4 hin bei der ersten Zahl aber muss das mal am PC testen)
         elif k == 3:
-            return (48, 5.5)                                                                                           # Laptop: (38, 3), PC: (34, 2.8) (veraltet, muss +4 hin bei der ersten Zahl aber muss das mal am PC testen)
+            return (52, 8)                                                                                           # Laptop: (38, 3), PC: (34, 2.8) (veraltet, muss +4 hin bei der ersten Zahl aber muss das mal am PC testen)
         elif k == 4:
-            return (70, 7)                                                                                           # Laptop: (56, 4), PC: (52, 3.8) (veraltet, muss +4 hin bei der ersten Zahl aber muss das mal am PC testen)
+            return (76, 11)                                                                                           # Laptop: (56, 4), PC: (52, 3.8) (veraltet, muss +4 hin bei der ersten Zahl aber muss das mal am PC testen)
         else:   # k ==5
-            return (80, 5)                                                                                           # Laptop: (80, 5), PC: (76, 4.8) (veraltet, muss +4 hin bei der ersten Zahl aber muss das mal am PC testen)
+            return (98, 15)                                                                                           # Laptop: (80, 5), PC: (76, 4.8) (veraltet, muss +4 hin bei der ersten Zahl aber muss das mal am PC testen)
             
     if (node_label == {}):
         y_axe, num = y_value(k)                                                                                   # parameter der entscheidet, wo limit auf der y-achse des graphen ist
@@ -336,7 +336,7 @@ def draw_ETN(ETN,S,ax,multiple=False):
         tick_positions = [i for i in range(0, k+1, 1)]                                                              # gehört
         for x, label in zip(tick_positions, tick_positions):                                                        # alles
             ax.plot(x, -y_axe+1.5, marker="|", color="k", markersize=8)  # Ticks                                      # zum 
-            ax.text(x, -y_axe+num - 0.05, label, ha='center', va='top', fontsize=12)  # Labels                       # Zeitstrahl Pfeil
+            ax.text(x, -y_axe+num - 0.05, label, ha='center', va='top', fontsize=20)  # Labels                       # Zeitstrahl Pfeil
 
         limits=plt.axis('on')                                                                                       # turns on axis
         
@@ -345,7 +345,7 @@ def draw_ETN(ETN,S,ax,multiple=False):
         adjusted_label = "\n".join(["".join(parts[i:i+2]) for i in range(0, len(parts), 2)])  # Blocks mit Zeilenumbruch
         
         #adjusted_label = "\n".join([S[i:i+2*(k+1)] for i in range(0, len(S), 2*(k+1))])                                     # die ETNS die zu lang sind, überschneiden sich. ich habe das erst mit rotation=45 gelöst (siehe eine Zeile weiter unten im Kommentar), allerdings ging das nur bei k = 2. für größere k haben sich die label wieder überschnitten
-        ax.set_xlabel(adjusted_label, fontsize=18)                                                                               # wenn k = 2, dann kann ich hier auch "ax.set_xlabel(S, rotation=45)" benutzen, dann überschneiden sich die label nicht, da sie etwas rotiert sind. bei größerem k überschneiden sie sich allerdings wieder                                                     
+        ax.set_xlabel(adjusted_label, fontsize=26)                                                                               # wenn k = 2, dann kann ich hier auch "ax.set_xlabel(S, rotation=45)" benutzen, dann überschneiden sich die label nicht, da sie etwas rotiert sind. bei größerem k überschneiden sie sich allerdings wieder                                                     
         nx.draw_networkx_nodes(ETN, pos, nodelist=id_ego, node_size=400, node_color='red', alpha=0.5)
     else:
         nx.draw(ETN,pos=pos,node_size=100,alpha=0.5)
