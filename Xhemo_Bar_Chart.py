@@ -12,7 +12,7 @@ from ETMM import *
 
 
 # Parameters
-k = 4                                   # number of static snapshot used for the constructions of ETN
+k = 2                                   # number of static snapshot used for the constructions of ETN
 gap = 0.5                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
 file_name = "periodic_01_graph_0"
@@ -204,35 +204,33 @@ def draw_barChart(S_keys, S_values_list, k, width, legend_labels):
     for i, S_values in enumerate(S_values_list):
         bars = plt.bar(S_keys_length + i * (width + 0.1), S_values, align='center', alpha=1, width=width, label=legend_labels[i], color=colors[i % len(colors)])
 
-        fmt_list = ["%.1f%%" for _ in S_values]                                                                                                             # das ist dafür, dass bei dem zweiten ETNS kein % steht, da es kein Prozentualer Wert ist
-        fmt_list[1] = "%.1f"
-
+        fmt_list = ["%.1f%%" for _ in S_values]                                                                                                             # das ist dafür, dass den Werten ein Prozentzeichen angehängt wird
         plt.bar_label(bars, labels=[fmt % val for fmt, val in zip(fmt_list, S_values)], padding=1, fontsize=18, fontweight="bold")                          # das ist dafür, dass über den Balken die values stehen
 
     
     filtered_S_keys = [filtered[2:] for filtered in S_keys]
     formatted_labels = format_long_labels(filtered_S_keys, k+1)
 
-    plt.xticks(ticks=S_keys_length+0.5, labels=formatted_labels, ha='center', fontsize=23)                                               # +0.5, damit label bei dem bar in der Mitte von den 3 steht, sonst steht das immer bei dem ersten
-    plt.yticks(fontsize=23)
+    plt.xticks(ticks=S_keys_length+0.5, labels=formatted_labels, ha='center', fontsize=23)                                                  # +0.5, damit label bei dem bar in der Mitte von den 3 steht, sonst steht das immer bei dem ersten
+    plt.text(-0.01, 1.03, 'δ', fontsize=26, ha='left', va='bottom', transform=plt.gca().transAxes)                                         # y-achsen beschriftung
+    plt.text(1.03, -0.02, 'ETNS', fontsize=26, ha='right', va='top', transform=plt.gca().transAxes)                                         # x-achsne beschriftung
+    current_ticks = plt.yticks()[0]
+    plt.yticks(current_ticks, [f"{int(tick)}%" for tick in current_ticks], fontsize=26)
     
-    plt.legend(fontsize=23)  # Legende anzeigen
+    plt.legend(fontsize=26)  # Legende anzeigen
     plt.show()
     
 
 '''
+S_periodic = load_etns("periodic_01_graph_30",gap,k,label=label)
+S_periodic_values = list(S_periodic.values())
+
 S_damped = load_etns("damped_01_graph_30",gap,k,label=label)
 S_damped_values = list(S_damped.values())
-#print("Damped:")
-#print(S_damped_values)
 
 S_chaotic = load_etns("chaotic_01_graph_30",gap,k,label=label)
 S_chaotic_values = list(S_chaotic.values())
-#print("Chaotic:")
-#print(S_chaotic_values)
 
-S_periodic = load_etns("periodic_01_graph_30",gap,k,label=label)
-S_periodic_values = list(S_periodic.values())
 '''
 
-draw_barChart(S_array[:][:3], [[17.1, 243, 619.2], [31.8, 246, 654.5], [3.1, 606, 908.0]], k, 0.4, legend_labels=["Damped", "Chaotic", "Periodic"])
+draw_barChart(S_array[:][:3], [[17.1, 0, 619.2], [31.8, 0, 654.5], [3.1, 0, 608.0]], k, 0.4, legend_labels=["Periodic", "Damped", "Chaotic"])
