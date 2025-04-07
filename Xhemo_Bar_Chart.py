@@ -12,7 +12,7 @@ from ETMM import *
 
 
 # Parameters
-k = 2                                   # number of static snapshot used for the constructions of ETN
+k = 4                                   # number of static snapshot used for the constructions of ETN
 gap = 0.5                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
 file_name = "periodic_01_graph_0"
@@ -233,4 +233,4 @@ S_chaotic_values = list(S_chaotic.values())
 
 '''
 
-draw_barChart(S_array[:][:3], [[17.1, 0, 619.2], [31.8, 0, 654.5], [3.1, 0, 608.0]], k, 0.4, legend_labels=["Periodic", "Damped", "Chaotic"])
+draw_barChart(S_array[:][:3], [[3.8, 100, 900.6], [16.8, 100, 640.4], [28.2, 100, 596.6]], k, 0.4, legend_labels=["Periodic", "Damped", "Chaotic"])
