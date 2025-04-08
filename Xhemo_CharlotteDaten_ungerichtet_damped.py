@@ -8,10 +8,10 @@ from ETMM import *
 
 
 # Parameters
-k = 2                                   # number of static snapshot used for the constructions of ETN
+k = 4                                   # number of static snapshot used for the constructions of ETN
 gap = 0.5                               # temporal gap
 label = False                           # if true, the loaded dataset is labeled
-file_name = "periodic_01_graph_4"
+file_name = "periodic_01_graph_1"
 
 
 def load_data(path):                                                        # Ein spezielles load_data(), da die Daten von Charlotte so ausgelegt sind, dass {'weight': 1} als zwei array elemente gelten (wegen dem Leerzeichen)
@@ -189,7 +189,7 @@ N_G0 = np.array(list(counts.values()))[:,1:]                                    
 
 z = 0                                                                                       # iterator to go through the N_G0 list
 for i in N_G:
-    if z == 0:
+    if z == 1:
         print("The number of occurences of some ETN in the original dataset is: " + str(i))
         print("The number of occurences of the same ETN in the null models is: " + str(N_G0[z]))
         avr_num = np.mean(N_G0[z])
@@ -198,7 +198,7 @@ for i in N_G:
         print("The absolute deviation between them equals: " + str("{:.1f}".format(diff)))              # dieses "{:.1f}".format(diff) sorgt dafür, dass es nur 2 Nachkommastellen gibt
         print("The percentage deviation equals: " + str((diff/i)*100))                                           
         print( )
-        z = z + 1
+    z = z + 1
 
 #print(N_G)
 #print(N_G0)
